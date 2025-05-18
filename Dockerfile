@@ -26,3 +26,5 @@ EXPOSE 8000
 
 # 8. Start the Django app using Gunicorn (production-ready server)
 CMD ["gunicorn", "portfolio.wsgi:application", "--bind", "0.0.0.0:8000"]
+
+
