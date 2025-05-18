@@ -1,0 +1,316 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% comment %} <meta name="viewport" content="width=1024"> {% endcomment %}
+    {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> {% endcomment %}
+    
+    <style>
+
+        {% if branding %}
+        :root {
+          --primary-color: {{ branding.Primary_color }};
+          --secondary-color: {{ branding.secondary_color }};
+          --background-color: {{ branding.background_color }};
+          --h2-color: {{ branding.h2_color }};
+          --card-h2-color: {{ branding.card_h2_color }};
+          --hover-color: {{ branding.hover_color }};
+          --text-color: {{ branding.text_color }};
+
+          --button-text-color: {{ branding.button_text_color }};
+          --button-color: {{ branding.button_color }};
+      }
+
+      .dark-mode {
+          --primary-color: {{ branding.dark_Primary_color }};
+          --secondary-color: {{ branding.dark_secondary_color }};
+          --background-color: {{ branding.dark_background_color }};
+          --h2-color: {{ branding.dark_h2_color }};
+          --card-h2-color: {{ branding.dark_card_h2_color }};
+          --hover-color: {{ branding.dark_hover_color }};
+          --text-color: {{ branding.dark_text_color }};
+
+          --button-text-color: {{ branding.dark_button_text_color }};
+          --button-color: {{ branding.dark_button_color }};
+      }
+
+        {% else %}
+          {% comment %} :root {
+            /* Default Theme */
+            --primary-color: #121212;
+            --secondary-color: #1c1c1c;
+            --background-color: #f8f9fa;
+
+            --hover-color: #ff9800;
+            --text-color: #FFFFFF;
+
+
+            --button-text-color: #000000;
+            --button-color: #FFFFFF;
+          } {% endcomment %}
+        {% endif %}
+    </style>
+    <title>{% block title %}Portfolio{% endblock %}</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/hover-min.css' %}" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    {% comment %} <meta name="theme-color" content="{{ branding.Primary_color}}" /> {% endcomment %}
+    <!-- In your <head> -->
+    <meta name="theme-color" content="{{ branding.Primary_color }}" id="theme-color-meta">
+
+    {% comment %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    {% endcomment %}
+    <meta name="description" content="{{ branding.description }}" />
+
+    {% block extra_head %}{% endblock %}
+
+    <!-- Standard favicon for all browsers (ICO format) -->
+    <link rel="icon" type="image/x-icon" href="{{branding.favicon_ico.url}}" />
+
+    <!-- SVG favicon for modern browsers -->
+    {% comment %}
+    <link rel="icon" type="image/svg+xml" href="{{branding.favicon_svg.url}}" />
+    {% endcomment %}
+
+    <!-- PNG favicon (for browsers that prefer PNG) -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="{{branding.favicon_96x96.url}}"
+    />
+
+    <!-- Apple Touch Icon (for iOS home screen) -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{{branding.apple_touch_icon.url}}"
+    />
+
+    <!-- Web App Manifest for Android and Progressive Web Apps -->
+    {% comment %}
+    <link rel="manifest" href="{% url 'manifest' %}" />
+    {% endcomment %}
+  </head>
+  <style></style>
+
+  <body>
+    {% with request.path as path %}
+    <header class="site-header">
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li>
+            <a
+              href="#hero"
+              class="nav-icon {% if path == '/' %}active{% endif %}"
+              data-title="Home"
+            >
+              <i class="bi bi-house"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#educationpage"
+              class="nav-icon {% if '/education' in path %}active{% endif %}"
+              data-title="Education"
+            >
+              <i class="bi bi-mortarboard"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#skillspage"
+              class="nav-icon {% if '/skills' in path %}active{% endif %}"
+              data-title="Skills"
+            >
+              <i class="bi bi-puzzle"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#servicespage"
+              class="nav-icon {% if '/services' in path %}active{% endif %}"
+              data-title="Services"
+            >
+              <i class="bi bi-tools"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              {% comment %} href="{% url 'projects:projects' %}" {% endcomment %}
+              href="#projectpage"
+              class="nav-icon {% if '/projects' in path %}active{% endif %}"
+              data-title="Projects"
+            >
+              <i class="bi bi-collection"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#contactpage"
+              class="nav-icon {% if '/contact' in path %}active{% endif %}"
+              data-title="Contact"
+            >
+              <i class="bi bi-headset"></i>
+            </a>
+          </li>
+          {% comment %}
+          <li>
+            <a
+              href="{% url 'work_experience' %}"
+              class="nav-icon {% if '/work_experience' in path %}active{% endif %}"
+              data-title="work experience"
+            >
+              <i class="bi bi-headset"></i>
+            </a>
+          </li>
+          {% endcomment %}
+        </ul>
+      </nav>
+    </header>
+    {% endwith %}
+
+    <main>
+      <div class="custom-cursor" id="cursor"></div>
+      <div class="cursor-trail" id="cursor"></div>
+
+      {% comment %} <div class="buon-group" id="lite">
+        <button
+          id="darkModeToggle"
+          class="circular-btn"
+          data-title="Light / Dark Mode"
+        >
+          <i id="modeIcon" class="bi bi-cloud-sun"></i>
+        </button>
+      </div> {% endcomment %}
+
+      {% if error_code and error_message %}
+      
+      <div class="error-container" id="error-box">
+        <h2>{{ error_code }}</h2>
+        <p>{{ error_message }}</p>
+        <div class="button-group">
+        <a href="{% url 'index' %}" class="btn"><i class="bi bi-chevron-left"></i> Back to home</a>
+        </div>
+      </div>
+      <style>
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 50px 20px;
+            overflow-x: hidden;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        .error-container h2, .error-container p {
+            animation: fadeIn 1s ease-in forwards;
+            opacity: 0;
+            
+        }
+            
+            @keyframes fadeIn {
+              0% {
+                opacity: 0;
+              }
+              100% {
+                opacity: 1;
+              }
+            }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--button-color);
+            color: var(--button-text-color);
+            font-size: 14px;
+            border: none;
+            transition: 0.3s;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 1.5s ease, box-shadow 0.3s ease,background-color 0.5s ease, color 0.5s ease;
+        }
+        .btn:hover {
+            background: var(--hover-color);
+            color: var(--text-color);
+            transform: scale(1.02);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+      </style>
+      <script>
+        document.getElementById("error-box").style.display = "block";
+      </script>
+      {% endif %} {% block content %}{% endblock %}
+    </main>
+    {% comment %} <footer>
+      <p class="cr">
+        &copy; 2025 {{ branding.name }}'s Portfolio. All rights reserved.
+      </p> {% endcomment %}
+      {% comment %}
+      <p>
+        "Let's Build Something Great Together!"
+        <a href="{% url 'contact' %}" class="hire-me-btn">Hire Me</a>
+      </p>
+      {% endcomment %}
+    {% comment %} </footer> {% endcomment %}
+    <script src="{% static 'js/scripts.js' %}"></script>
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+
+    {% block extra_body %}{% endblock %}
+  </body>
+</html>

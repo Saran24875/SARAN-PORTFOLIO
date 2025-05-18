@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Experience{% endblock %}
+{% block content %}
+<section class="experience-section">
+    <h2>Work Experience</h2>
+    {% if experiences %}
+    <div class="worktimeline">
+        {% for experience in experiences %}
+        <div class="worktimeline-item">
+            <!-- Icon container for random FontAwesome icon -->
+            <div class="worktimeline-icon"></div>
+            <div class="worktimeline-content">
+                <h3>{{ experience.job_title }} at {{ experience.company_name }}</h3>
+                <p><strong>Dates:</strong> {{ experience.start_date }} - {{ experience.end_date }}</p>
+                <ul>
+                    {% if responsibility in experience.responsibilities %}
+                    <li>{{ responsibility }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    {% comment %} <p class="exception">No education information available</p> {% endcomment %}
+    <div class="no-info">
+    <div class="container">
+      <!-- SVG Icon -->
+      {% comment %} <svg class="no-info-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="red"/>
+      </svg> {% endcomment %}
+  
+      <!-- Animated Text -->
+      <p class="message">No Information Available<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+  </div>
+  </div>
+    {% endif %}
+</section>
+{% endblock %}

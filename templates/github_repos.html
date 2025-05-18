@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}GitHub Repositories{% endblock %}
+{% block content %}
+<section class="github-section">
+    <h2>GitHub Repositories</h2>
+    <div class="repos-list">
+        {% for repo in repositories %}
+        <div class="repo-card">
+            <h3>{{ repo.name }}</h3>
+            <p>{{ repo.description }}</p>
+            <a href="{{ repo.html_url }}" target="_blank" class="btn">View Repository</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

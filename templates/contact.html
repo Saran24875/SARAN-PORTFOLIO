@@ -1,0 +1,97 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+{% block content %}
+<section class="contact-section" data-aos="fade-up" data-aos-duration="1000" id="contactpage">
+    {% if contact %}
+        <div class="contact">
+        <div class="contact-left">
+        </div class="flex">
+        <div class="contact-right" id="order1">
+            <h2>Contact Me</h2>
+            <form method="POST" action="{% url 'contact' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                </div>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <ul>
+                            {% for error in form.email.errors %}
+                                <li style="color:red;">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+                <button type="submit" class="bton" "bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center gap-2 "><i class="fa fa-paper-plane"></i> Send Message</button>
+                        <div class="contact-social-media" id="contacticons-mbl">
+        <ul>
+            {% for link in social_media_links %}
+                <li>
+                    <a href="{{ link.url }}" target="_blank" title="{{ link.platform }}">
+                        <i class="{{ link.icon_class }}"></i>
+                    </a>
+                </li>
+            {% empty %}
+            {% endfor %}
+        </ul>
+        </div>
+            </form>
+        </div>
+        <div class="contact-right">
+        <div class="con">
+            <h2>About Me</h2>
+            <h3>{{ branding.name }}</h3>
+            <p>{{ branding.bio }}</p>
+
+
+        <div class="contact-social-media" id="contacticons-pc">
+        <ul>
+            {% for link in social_media_links %}
+                <li>
+                    <a href="{{ link.url }}" target="_blank" title="{{ link.platform }}">
+                        <i class="{{ link.icon_class }}"></i>
+                    </a>
+                </li>
+            {% empty %}
+            {% endfor %}
+        </ul>
+        </div>
+        </div>
+        </div>
+    </div>
+    {% else %}
+            {% comment %} <p class="exception">No education information available</p> {% endcomment %}
+            <div class="no-info">
+            <div class="container">
+            <!-- SVG Icon -->
+            {% comment %} <svg class="no-info-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="red"/>
+            </svg> {% endcomment %}
+        
+            <!-- Animated Text -->
+            <p class="message">Contact Mail not found<span class="dots"><span>.</span><span>.</span><span>.!!</span></span></p>
+        </div>
+        </div>
+    {% endif %}
+
+</section>
+{% endblock %}

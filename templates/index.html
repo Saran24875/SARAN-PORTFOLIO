@@ -1,0 +1,405 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Home{% endblock %}
+{% block content %}
+
+<section class="hero-section" id="hero">
+  <button id="scrollBtn" class="scroll-button">Scroll Down <i class="fa fa-angle-double-down"></i></button>
+
+<script>
+  const sections = [
+    "hero",         // Home screen
+    "about-p",      // Scroll with 400px offset
+    "education-p",
+    "skill-p",
+    "services-p",
+    "projects-p",
+    "contact-p",
+  ];
+
+  let currentSection = 0;
+  const scrollBtn = document.getElementById("scrollBtn");
+
+  function scrollToNext() {
+    const currentId = sections[currentSection];
+    const currentEl = document.getElementById(currentId);
+    const rect = currentEl.getBoundingClientRect();
+
+    // If content is still available within the current section
+    const bottomVisible = rect.bottom <= window.innerHeight + 10;
+
+    if (!bottomVisible) {
+      // Scroll down by screen height minus 300px (for header space)
+      const scrollAmount = window.innerHeight - 300;
+      window.scrollBy({ top: scrollAmount, behavior: "smooth" });
+    } else {
+      // Move to next section
+      if (currentSection < sections.length - 1) {
+        currentSection++;
+        const nextId = sections[currentSection];
+        const nextEl = document.getElementById(nextId);
+
+        if (nextId === "about-p") {
+          const offsetTop = nextEl.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top: offsetTop - 400, behavior: "smooth" }); // 400px offset for about-p
+        } else {
+          const offsetTop = nextEl.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top: offsetTop - 50, behavior: "smooth" }); // 300px for header space
+        }
+
+        if (currentSection === sections.length - 1) {
+          scrollBtn.innerHTML = `Scroll Up <i class="fa fa-angle-double-up"></i>`;
+        }
+      } else {
+        // Scroll to top
+        currentSection = 0;
+        const topEl = document.getElementById("hero");
+        window.scrollTo({ top: topEl.offsetTop - 300, behavior: "smooth" });
+        scrollBtn.innerHTML = `Scroll Down <i class="fa fa-angle-double-down"></i>`;
+      }
+    }
+  }
+
+  scrollBtn.addEventListener("click", scrollToNext);
+
+  // Manual scroll icon update
+  window.addEventListener("scroll", () => {
+    const bottomReached = Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight;
+    if (bottomReached) {
+      currentSection = sections.length - 1;
+      scrollBtn.innerHTML = `Scroll Up <i class="fa fa-angle-double-up"></i>`;
+    } else if (window.scrollY === 0) {
+      currentSection = 0;
+      scrollBtn.innerHTML = `Scroll Down <i class="fa fa-angle-double-down"></i>`;
+    }
+  });
+</script>
+
+
+
+
+
+ {% comment %}
+  <!-- Welcome Screen -->
+  <div id="welcome-screen">
+    <h2>Welcome to My Portfolio</h2>
+  </div>
+  <style>
+    /* Welcome screen styling */
+    #welcome-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--primary-color);
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-family: "Poppins", sans-serif;
+      text-align: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 1s ease-out;
+    }
+
+    /* Fade-out animation */
+    #welcome-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(() => {
+        document.getElementById("welcome-screen").classList.add("fade-out");
+      }, 800); // 2-second delay before fading out
+    });
+  </script>
+  {% endcomment %} {% comment %}
+  <!-- Animated Circles -->
+  <div class="circle red"></div>
+  <div class="circle blue"></div>
+  <div class="circle green"></div>
+
+  <!-- Gaussian Blur Overlay -->
+  <div class="backdrop"></div>
+  <div class="back">
+    {% endcomment %} {% if branding %}
+    <div class="hero-content">
+      <h1>
+        Hello, I’m
+        <span class="highlight" id="typing-name">{{branding.name}}</span>
+      </h1>
+      <p class="tagline" id="hero h1 span">
+        Printf("<span class="role">I'm a </span
+        ><span class="dynamic-roles">{{branding.tagline}}</span>");
+      </p>
+      <div class="button-group">
+        <a href="{% url 'contact' %}" class="btn"
+          ><i class="bi bi-headset"> </i>Hire Me!</a
+        >
+        <a
+          href="{{branding.resume.url}}"
+          class="btn"
+          download
+          id="resumeDownload"
+        >
+          <i class="bi bi-file-earmark-text"></i> View Resume
+        </a>
+        {% comment %}
+        <a href="{{branding.resume.url}}" class="btn"
+          ><i class="bi bi-file-earmark-text"></i> View Resume</a
+        >
+        {% endcomment %}
+        <a href="{% url 'projects:projects' %}" class="btn"
+          ><i class="bi bi-collection"></i> Projects</a
+        >
+
+        <!-- Custom Pop-up -->
+        <!-- Custom Pop-up -->
+        <div id="popup" class="popup">
+          <div class="popup-content">
+            <p>Resume Downloaded Successfully!</p>
+          </div>
+        </div>
+
+        <style>
+          /* Pop-up styling */
+          .popup {
+            font-family: "Poppins", sans-serif;
+            display: none;
+            position: fixed;
+            top: 20px; /* Moves popup to the top */
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--hover-color);
+            padding: 15px 20px;
+            border-radius: 50px;
+            width: max-content;
+            font-size: 16px;
+            z-index: 1000;
+            animation: fadeInOut 3s ease-in-out;
+          }
+
+          /* Animation */
+          @keyframes fadeInOut {
+            0% {
+              opacity: 0;
+              transform: translateX(-50%) translateY(-30px); /* Start higher */
+            }
+            10% {
+              opacity: 1;
+              transform: translateX(-50%) translateY(0); /* Move to normal position */
+            }
+            90% {
+              opacity: 1;
+              transform: translateX(-50%) translateY(0);
+            }
+            100% {
+              opacity: 0;
+              transform: translateX(-50%) translateY(30px); /* Move down before disappearing */
+            }
+          }
+        </style>
+
+        <script>
+          document
+            .getElementById("resumeDownload")
+            .addEventListener("click", function () {
+              setTimeout(function () {
+                var popup = document.getElementById("popup");
+                popup.style.display = "block";
+                setTimeout(function () {
+                  popup.style.display = "none";
+                }, 3000); // Hide after 3 seconds
+              }, 2000);
+            });
+        </script>
+      </div>
+    </div>
+    <div class="hero-image">
+      <picture>
+        <!-- For mobile screens -->
+        <source
+          media="(max-width: 768px)"
+          srcset="{{ branding.profile_picture_for_mobile.url }}"
+        />
+
+        <!-- Default image for desktop -->
+        <img src="{{ branding.profile_picture.url }}" alt="Profile Picture" />
+      </picture>
+    </div>
+    {% else %} {% comment %}
+    <p class="exception">No education information available</p>
+    {% endcomment %}
+    <div class="no-info">
+      <div class="container">
+        <!-- SVG Icon -->
+        {% comment %}
+        <svg
+          class="no-info-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+            fill="red"
+          />
+        </svg>
+        {% endcomment %}
+
+        <!-- Animated Text -->
+        <p class="message">
+          Admin Profile not added<span class="dots"
+            ><span>.</span><span>.</span><span>.!!</span></span
+          >
+        </p>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="matrix-container">
+      <canvas id="matrix"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const typingElement = document.querySelector(".dynamic-roles");
+    const words = "{{ branding.tagline }}".split(","); // Split the tagline into an array
+    let wordIndex = 0;
+    let letterIndex = 0;
+    let isDeleting = false;
+
+    function typeWords() {
+      const currentWord = words[wordIndex].trim(); // Remove extra spaces if any
+      const visibleText = currentWord.substring(0, letterIndex);
+      typingElement.innerHTML = `${visibleText}<span class="cursor">|</span>`;
+
+      if (!isDeleting && letterIndex === currentWord.length) {
+        setTimeout(() => {
+          isDeleting = true;
+        }, 1000); // Pause before deleting
+      } else if (isDeleting && letterIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length; // Move to the next word
+      }
+
+      letterIndex += isDeleting ? -1 : 1;
+      setTimeout(typeWords, isDeleting ? 100 : 200);
+    }
+
+    typeWords();
+
+    // Animate circles dynamically
+    const circles = [
+      { class: "red", x: 0, y: 0 },
+      { class: "blue", x: 100, y: -100 },
+      { class: "green", x: -150, y: 150 },
+    ];
+
+    circles.forEach((circle, index) => {
+      const element = document.querySelector(`.circle.${circle.class}`);
+      let direction = 1;
+      const animate = () => {
+        const x = parseFloat(element.style.getPropertyValue("--x") || circle.x);
+        const y = parseFloat(element.style.getPropertyValue("--y") || circle.y);
+
+        element.style.transform = `translate(${x + direction}px, ${
+          y + direction
+        }px)`;
+
+        if (Math.abs(x) >= 50 || Math.abs(y) >= 50) direction *= -1;
+        requestAnimationFrame(animate);
+      };
+      animate();
+    });
+
+    // Toggle between light and dark mode (optional)
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "d") {
+        document.body.classList.toggle("dark");
+      }
+    });
+  </script>
+</section>
+{% comment %}
+<div class="hero-section" id="hero2">
+  {% endcomment %}
+    <div class="left_container">
+        <div class="home-edu" id="about-p" data-effect="about.html" data-aos="fade-up-left"     data-aos-duration="1000">{% include "about.html" %}</div>
+        <div class="home-edu" id="education-p" data-effect="education.html">{% include "education.html" %}</div>
+        <div class="home-edu" id="skill-p" data-effect="home.html">{% include "home.html" %}</div>
+        <div class="home-edu" id="services-p" data-effect="services.html">{% include "services.html" %}</div>
+        <div class="home-edu" id="projects-p" data-effect="projects.html">{% include "projects.html" %}</div>
+        <div class="home-edu" id="contact-p" data-effect="contact.html">{% include "contact.html" %}</div>
+        <div class="home-edu" id="footer-p" data-effect="footer.html">{% include "footer.html" %}</div>
+    </div>
+
+      <div class="buon-group" id="lite">
+        <button id="darkModeToggle" class="circular-btn" data-title="Light / Dark Mode">
+            <i id="modeIcon" class="bi bi-cloud-sun"></i>
+        </button>
+    </div>
+
+  {% comment %}
+</div>
+
+
+{% endcomment %} 
+
+<footer class="footer" aos="fade-up">
+  <div class="footer-content">
+    <p>Copyright&copy; 2025 {{ branding.name }}. All rights reserved.</p>
+    <div class="social-links">
+      <a href="{{ link.github }}">GitHub</a>
+      <a href="{{ link.email }}">Email</a>
+    </div>
+  </div>
+  <style>
+    .footer {
+    width: 100vw;
+  background: rgba(255, 255, 255, 0.1);
+      color: var(--hover-color);
+      padding: 20px;
+      overflow: hidden;
+        position: relative;
+        display:block;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      margin-left:45%;
+    }
+    .social-links a {
+      color: var(--text-color);
+      margin: 0 10px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    @media screen and (max-width: 768px) {
+          .footer {
+    width: 90vw;
+  background: rgba(255, 255, 255, 0.1);
+      color: var(--hover-color);
+      padding: 20px;
+      overflow: hidden;
+        position: relative;
+        display:block;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+          .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      margin-left:0%;
+      font-size: 10px;
+    }
+    }
+
+    </style>
+</footer>
+{% endblock %}

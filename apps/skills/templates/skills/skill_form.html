@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skill Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Skill Form</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            $('#id_skill_type').change(function() {
+                var skillType = $(this).val();
+                $.ajax({
+                    url: "{% url 'get_skill_choices' %}",
+                    data: {
+                        'skill_type': skillType
+                    },
+                    success: function(data) {
+                        var $nameField = $('#id_name');
+                        $nameField.empty();
+                        $.each(data, function(index, value) {
+                            $nameField.append($('<option>', {
+                                value: value[0],
+                                text: value[1]
+                            }));
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

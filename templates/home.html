@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% block title %}Skills{% endblock %}
+
+{% block content %}
+<section class="skill-container" id="skillspage">
+    <h2 data-aos="fade-up" data-aos-duration="1000">Skills</h2>
+  {%if programming_languages or frameworks or tools or databases or soft_skills or other%}
+  {%if programming_languages%}
+  <!-- ========================================
+       Programming Languages Section
+  ======================================== -->
+  <article class="skill-category" id="programming-languages">
+    <h3 data-aos="fade-right" data-aos-duration="1000">Programming Languages</h3>
+    <div class="cards" >
+      {% for language in programming_languages %}
+      <div class="skill-card" data-level="{{ language.level }}" data-aos="fade-left">
+        <div class="progress-circle">
+          <svg>
+            <!-- Background arc with bottom gap -->
+            <circle class="background-circle" cx="60" cy="60" r="45">
+              <title>{{ language.name }} background</title>
+            </circle>
+            <!-- Progress arc -->
+            <circle class="progress-ring" cx="60" cy="60" r="45">
+              <title>{{ language.name }} proficiency</title>
+            </circle>
+          </svg>
+          <div class="progress-text">
+            <i class="{%if language.custom_icon %}{{ language.custom_icon }}{%else%}{{ language.icon }}{%endif%}" aria-hidden="true"></i>
+          </div>
+        </div>
+        <p>{%if language.name%} {{ language.name }}{%else%}{{ language.custom_entry }}{%endif%}</p>
+        <p class="level">{{ language.level }}%</p>
+      </div>
+      {% endfor %}
+    </div>
+  </article>
+  {%endif%}
+
+  
+
+  <!-- ========================================
+       Frameworks Section
+  ======================================== -->
+  {%if frameworks%}
+  <article class="skill-category">
+    <h3 data-aos="fade-right" data-aos-duration="1000">Frameworks</h3>
+    <div class="cards">
+      {% for framework in frameworks %}
+      <div class="skill-card" data-level="{{ framework.level }}" data-aos="fade-left" data-aos-duration="1000">
+        <div class="progress-circle">
+          <svg>
+            <circle class="background-circle" cx="60" cy="60" r="45">
+              <title>{{ framework.select_framework }} background</title>
+            </circle>
+            <circle class="progress-ring" cx="60" cy="60" r="45">
+              <title>{{ framework.select_framework }} proficiency</title>
+            </circle>
+          </svg>
+          <div class="progress-text">
+            <i class="{%if framework.custom_icon %}{{ framework.custom_icon }}{%else%}{{ framework.icon }}{%endif%}" aria-hidden="true"></i>
+          </div>
+        </div>
+        <p>{%if framework.select_framework%} {{ framework.select_framework }}{%else%}{{ framework.custom_entry }}{%endif%}</p>
+        <p class="level">{{ framework.level }}%</p>
+      </div>
+      {% endfor %}
+    </div>
+  </article>
+  {%endif%}
+
+  <!-- ========================================
+       Tools Section
+  ======================================== -->
+  {%if tools%}
+  <article class="skill-category">
+    <h3 data-aos="fade-right" data-aos-duration="1000">Tools</h3>
+    <div class="cards">
+      {% for tool in tools %}
+      <div class="skill-card" data-level="{{ tool.level }}" data-aos="fade-left" data-aos-duration="1000">
+        <div class="progress-circle">
+          <svg>
+            <circle class="background-circle" cx="60" cy="60" r="45">
+              <title>{{ tool.select_tools }} background</title>
+            </circle>
+            <circle class="progress-ring" cx="60" cy="60" r="45">
+              <title>{{ tool.select_tools }} proficiency</title>
+            </circle>
+          </svg>
+          <div class="progress-text">
+            <i class="{%if tool.custom_icon %}{{ tool.custom_icon }}{%else%}{{ tool.icon }}{%endif%}" aria-hidden="true"></i>
+          </div>
+        </div>
+        <p>{%if tool.select_tools%} {{ tool.select_tools }}{%else%}{{ tool.custom_entry }}{%endif%}</p>
+        <p class="level">{{ tool.level }}%</p>
+      </div>
+      {% endfor %}
+    </div>
+  </article>
+  {%endif%}
+
+  <!-- ========================================
+       Databases Section
+  ======================================== -->
+  {%if databases%}
+
+  <article class="skill-category">
+    <h3 data-aos="fade-right" data-aos-duration="1000">Databases</h3>
+    <div class="cards">
+      {% for databases in databases %}
+      <div class="skill-card" data-level="{{ databases.level }}" data-aos="fade-left" data-aos-duration="1000">
+        <div class="progress-circle">
+          <svg>
+            <circle class="background-circle" cx="60" cy="60" r="45">
+              <title>{{ databases.select_databases }} background</title>
+            </circle>
+            <circle class="progress-ring" cx="60" cy="60" r="45">
+              <title>{{ databases.select_databases }} proficiency</title>
+            </circle>
+          </svg>
+          <div class="progress-text">
+            <i class="{%if databases.custom_icon %}{{ databases.custom_icon }}{%else%}{{ databases.icon }}{%endif%}" aria-hidden="true"></i>
+          </div>
+        </div>
+        <p>{%if databases.select_database%} {{ databases.select_database }}{%else%}{{ databases.custom_entry }}{%endif%}</p>
+        <p class="level">{{ databases.level }}%</p>
+      </div>
+      {% endfor %}
+    </div>
+  </article>
+  {%endif%}
+
+  <!-- ========================================
+       SoftSkills Section
+  ======================================== -->
+  {%if soft_skills%}
+  <article class="skill-category">
+    <h3 data-aos="fade-right" data-aos-duration="1000">SoftSkills</h3>
+    <div class="cards">
+      {% for soft_skills in soft_skills %}
+      <div class="skill-card" data-level="{{ soft_skills.level }}" data-aos="fade-left" data-aos-duration="1000">
+        <div class="progress-circle">
+          <svg>
+            <circle class="background-circle" cx="60" cy="60" r="45">
+              <title>{{ soft_skill.select_SoftSkills }} background</title>
+            </circle>
+            <circle class="progress-ring" cx="60" cy="60" r="45">
+              <title>{{ soft_skill.select_SoftSkills }} proficiency</title>
+            </circle>
+          </svg>
+          <div class="progress-text">
+            <i class="{%if soft_skills.custom_icon %}{{ soft_skills.custom_icon }}{%else%}{{ soft_skills.icon }}{%endif%}" aria-hidden="true"></i>
+          </div>
+        </div>
+        <p>{%if soft_skills.select_soft_skills%} {{ soft_skills.select_soft_skills}}{%else%}{{ soft_skills.custom_entry }}{%endif%}</p>
+        <p class="level">{{ soft_skills.level }}%</p>
+      </div>
+    {% endfor %}
+    </div>
+  </article>
+</section>
+{%endif%}
+
+
+{% else %}
+{% comment %} <p class="exception">No education information available</p> {% endcomment %}
+<div class="no-info">
+<div class="container">
+  <!-- SVG Icon -->
+  {% comment %} <svg class="no-info-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="red"/>
+  </svg> {% endcomment %}
+
+  <!-- Animated Text -->
+  <p class="message">skills not added<span class="dots"><span>.</span><span>.</span><span>.!!</span></span></p>
+</div>
+</div>
+{% endif %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".skill-card").forEach(card => {
+    const level = parseInt(card.getAttribute("data-level"), 10);
+    const progressRing = card.querySelector(".progress-ring");
+
+    // Ensure level is between 0 and 100
+    const clampedLevel = Math.max(0, Math.min(100, level));
+
+    // New dashoffset calculation:
+    // - At 0% progress -> stroke-dashoffset = 212.25 (fully hidden)
+    // - At 100% progress -> stroke-dashoffset = 0 (fully visible)
+    const progressOffset = (1 - clampedLevel / 100) * 212.25;
+    progressRing.style.strokeDashoffset = progressOffset;
+
+    // Adjust stroke color based on level:
+    let color;
+
+    if (clampedLevel >= 35 && clampedLevel <= 50) {
+      color = "var(--text-color)"; // Green
+    } else if (clampedLevel >= 51 && clampedLevel <= 70) {
+      color = "var(--text-color)"; // Yellow
+    } else if (clampedLevel >= 71 && clampedLevel <= 85) {
+      color = "var(--hover-color)"; // Orange
+    } else if (clampedLevel >= 86 && clampedLevel <= 100) {
+      color = "var(--hover-color)"; // Red
+    } else {
+      color = "var(--button-color)"; // Optional: Handle values outside range
+    }
+    
+
+    progressRing.style.stroke = color;
+  });
+});
+
+      
+</script>
+
+{% endblock %}

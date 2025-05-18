@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Services{% endblock %}
+{% block content %}
+
+<section class="services-section" id="servicespage">
+    <h2 data-aos="fade-up">Our Premium Services</h2>
+    {% if services %}
+    <p class="section-subtitle">Explore our wide range of services tailored for you.</p>
+
+    <div class="services-grid">
+        {% for service in services %}
+        <div class="service-card" data-aos="{% if forloop.counter|divisibleby:2 %}fade-left{% else %}fade-right{% endif %}">
+            {%if service.icon %}
+            <div class="service-icon">
+                <i class="{{ service.icon }}"></i>
+            </div>
+            {% endif %}
+            {% if service.Othericon %}
+            <div class="service-icon">
+                <i class="{{ service.Othericon }}"></i>
+            </div>
+            {% endif %}
+            <div class="service-content">
+                {% if service.Select_Service %}
+                <h3>{{ service.Select_Service }}</h3>
+                {% endif %}
+                
+                {% if service.Others %}
+                <h3>{{ service.Others }}</h3>
+                {% endif %}
+
+                <p>{{ service.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    <a href="{% url 'contact' %}" class="contact-btn" data-aos="fade-up">Contact Us</a>
+    {% else %}
+    {% comment %} <p class="exception">No education information available</p> {% endcomment %}
+    <div class="no-info">
+    <div class="container">
+      <!-- SVG Icon -->
+      {% comment %} <svg class="no-info-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="red"/>
+      </svg> {% endcomment %}
+  
+      <!-- Animated Text -->
+      <p class="message">Services not added<span class="dots"><span>.</span><span>.</span><span>.!!</span></span></p>
+  </div>
+  </div>
+    {% endif %}
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+<section class="project" id="projectpage">
+    <h2 id="tittleproject" data-aos="fade-up" data-aos-duration="1000">A Glimpse into My Work</h2>
+    <p class="project-subtitle">Explore my diverse range of projects that showcase my skills and creativity.</p>
+
+    {% if projects %}
+
+    <div class="project-grid">
+        {% for project in projects %}
+            <div class="project-card" data-aos="{% if forloop.counter|divisibleby:2 %}fade-left{% else %}fade-right{% endif %}" data-aos-duration="1000">
+                {% if project.Card_image %}
+                <img src="{{ project.Card_image.url }}" alt="Project Image">
+            {% else %}
+                <img src="/static/default-image.jpg" alt="Default Image">
+            {% endif %}
+            
+                <!-- Hover Effect: Show Details -->
+                <div class="project-details">
+                    <h2>{{ project.name }}</h2>
+                    <p>{{ project.one_line_about_the_project }}</p>
+                    <a href="{% url 'projects:project_detail' project.id %}" class="project-btn">View Project</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    {% comment %} <p class="exception">No education information available</p> {% endcomment %}
+    <div class="no-info">
+    <div class="container">
+      <!-- SVG Icon -->
+      {% comment %} <svg class="no-info-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="red"/>
+      </svg> {% endcomment %}
+  
+      <!-- Animated Text -->
+      <p class="message">Projects not added<span class="dots"><span>.</span><span>.</span><span>.!!</span></span></p>
+  </div>
+  </div>
+    {% endif %}
+</section>
+{% endblock %}
