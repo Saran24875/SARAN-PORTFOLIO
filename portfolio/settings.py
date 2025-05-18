@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')  # Replace with a strong secret key
 DEBUG = os.getenv('DEBUG')
 
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "saran-developer.me", "www.saran-developer.me",".onrender.com","vercel.com"]
+ALLOWED_HOSTS = os.environ.get("RENDER_EXTERNAL_HOSTNAME", "").split(",")
 # Installed Apps
 INSTALLED_APPS = [
     # 'admin_soft.apps.AdminSoftDashboardConfig',
