@@ -15,6 +15,9 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 # 5. Copy the rest of the project files into the container
 COPY . /code/
 
+# 5.1 Install additional dependencies if needed
+ENV DJANGO_SETTINGS_MODULE=portfolio.settings
+
 # 6. Collect static files (for deployment)
 RUN python manage.py collectstatic --noinput
 
