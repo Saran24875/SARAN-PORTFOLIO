@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')  # Replace with a strong secret key
 DEBUG = os.getenv('DEBUG')
 
 
-ALLOWED_HOSTS = os.environ.get("RENDER_EXTERNAL_HOSTNAME", "").split(",")
+ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "").split(",") if host.strip()]
 # Installed Apps
 INSTALLED_APPS = [
     # 'admin_soft.apps.AdminSoftDashboardConfig',
@@ -134,9 +134,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
-GEMINI_API_KEYS = os.getenv("GEMINI_API_KEYS").split(",")
 
-ZEROBOUNCE_API_KEYS = os.getenv("ZEROBOUNCE_API_KEYS", "").split(",")
-ZEROBOUNCE_API_KEYS = [key.strip() for key in ZEROBOUNCE_API_KEYS if key.strip()]
+GEMINI_API_KEYS = [key.strip() for key in os.getenv("GEMINI_API_KEYS", "").split(",") if key.strip()]
+
+ZEROBOUNCE_API_KEYS = [key.strip() for key in os.getenv("ZEROBOUNCE_API_KEYS", "").split(",") if key.strip()]
+
 
 # Print to test (you can remove these lines later)
