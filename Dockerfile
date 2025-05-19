@@ -19,7 +19,7 @@ COPY . /code/
 ENV DJANGO_SETTINGS_MODULE=portfolio.settings
 
 # 6. Collect static files (for deployment)
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic
 
 # 7. Expose port 8000 (this is what Django runs on)
 EXPOSE 8000
