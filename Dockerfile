@@ -19,12 +19,12 @@ COPY . /code/
 ENV DJANGO_SETTINGS_MODULE=portfolio.settings
 
 # 6. Collect static files (for deployment)
-RUN python manage.py collectstatic
+RUN python manage.py collectstatic --noinput
 
 # 7. Expose port 8000 (this is what Django runs on)
 EXPOSE 8000
 
 # 8. Start the Django app using Gunicorn (production-ready server)
-CMD ["gunicorn", "portfolio.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py migrate && python manage.py createsu && gunicorn portfolio.wsgi:application --bind 0.0.0.0:8000"]
 
 
