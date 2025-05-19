@@ -10,7 +10,7 @@ sys.path.append(str(BASE_DIR / "apps"))
 
 # Security
 SECRET_KEY = os.getenv('SECRET_KEY')  # Replace with a strong secret key
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.getenv("DEBUG", "False").lower() in ["true", "1"]
 print(f"DEBUG is set to: {DEBUG}")  # Print DEBUG value for debugging
 
 ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "").split(",") if host.strip()]

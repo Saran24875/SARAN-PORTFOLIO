@@ -25,6 +25,10 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 # 8. Start the Django app using Gunicorn (production-ready server)
-CMD ["sh", "-c", "python manage.py migrate && python manage.py createsuperuser && gunicorn portfolio.wsgi:application --bind 0.0.0.0:8000"]
+CMD sh -c "python manage.py migrate && \
+           python manage.py createsuperuser --noinput && \
+           python -c 'import os; import django; django.setup(); from django.contrib.auth import get_user_model; User = get_user_model(); user = User.objects.get(username=os.environ[\"DJANGO_SUPERUSER_USERNAME\"]); user.set_password(os.environ[\"DJANGO_SUPERUSER_PASSWORD\"]); user.save()' && \
+           gunicorn portfolio.wsgi:application --bind 0.0.0.0:8000"
+
 
 
