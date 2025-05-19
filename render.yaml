@@ -1,17 +1,32 @@
 services:
   - type: web
     name: saran-portfolio
-    env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn portfolio.wsgi:application --bind 0.0.0.0:$PORT"
+    env: docker
+    plan: free
+    region: asia-southeast1
+
+    dockerfilePath: ./Dockerfile
+
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: portfolio.settings
-      - key: PYTHON_VERSION
-        value: 3.11
       - key: SECRET_KEY
-        generateValue: true
-      - key: DATABASE_URL
-        fromDatabase:
-          name: saran-portfolio-db
-          property: connectionString
+        value: your-django-secret-key
+      - key: DEBUG
+        value: "False"
+      - key: DJANGO_SUPERUSER_USERNAME
+        value: Saran2005
+      - key: DJANGO_SUPERUSER_EMAIL
+        value: saranraj2005jsus@gmail.com
+      - key: DJANGO_SUPERUSER_PASSWORD
+        value: 23UEAM0056
+      - key: EMAIL_HOST_USER
+        value: noreplay.saran@gmail.com
+      - key: EMAIL_HOST_PASSWORD
+        value: your-app-password
+      - key: ALLOWED_HOSTS
+        value: localhost,127.0.0.1,saran-developer.me,www.saran-developer.me,.onrender.com,vercel.com
+      - key: GEMINI_API_KEYS
+        value: comma,separated,keys
+      - key: ZEROBOUNCE_API_KEYS
+        value: comma,separated,keys
