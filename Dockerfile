@@ -2,8 +2,8 @@
 FROM python:3.11-slim
 
 # 2. Set environment variables to prevent .pyc files and enable logs
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # 3. Set the working directory in the container
 WORKDIR /code
@@ -25,6 +25,6 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 # 8. Start the Django app using Gunicorn (production-ready server)
-CMD ["sh", "-c", "python manage.py migrate && python manage.py createsu && gunicorn portfolio.wsgi:application --bind 0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py migrate && python manage.py createsuperuser && gunicorn portfolio.wsgi:application --bind 0.0.0.0:8000"]
 
 
