@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 from pathlib import Path
 import sys
 from dotenv import load_dotenv
@@ -79,6 +80,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+database_url = os.environ . get( "DATABASE URL")
+DATABASES['default'] = dj_database_url.parse(database_url)
+
 
 # Password Validation
 AUTH_PASSWORD_VALIDATORS = [
