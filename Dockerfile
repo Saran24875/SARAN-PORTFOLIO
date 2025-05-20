@@ -22,4 +22,4 @@ RUN python manage.py collectstatic --noinput
 CMD sh -c "python manage.py migrate && \
            python manage.py createsuperuser --noinput || true && \
            python -c 'import os; import django; django.setup(); from django.contrib.auth import get_user_model; User = get_user_model(); user = User.objects.get(username=os.environ[\"DJANGO_SUPERUSER_USERNAME\"]); user.set_password(os.environ[\"DJANGO_SUPERUSER_PASSWORD\"]); user.save()' && \
-           python -m gunicorn portfolio.asgi:application -k uvicorn.workers.UvicornWorker"
+           python -m gunicorn portfolio.asgi:application -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --workers 4 --timeout 300 --reload --chdir /code"
