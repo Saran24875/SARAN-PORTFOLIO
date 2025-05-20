@@ -24,9 +24,18 @@ else:
     urlpatterns += [
         re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     ]
+# Serve static files correctly
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+else:
+    urlpatterns += [
+        re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+    ]
+
 
 # Global error handlers
-handler404 = custom_404_view
+handler404 = custom_404_view 
 handler500 = custom_500_view
 handler403 = custom_403_view
 handler400 = custom_400_view
+1

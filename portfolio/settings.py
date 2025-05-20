@@ -3,7 +3,6 @@ import dj_database_url
 from pathlib import Path
 import sys
 from dotenv import load_dotenv
-
 load_dotenv()  # Load environment variables
 
 
@@ -14,10 +13,18 @@ sys.path.append(str(BASE_DIR / "apps"))
 
 # Security
 SECRET_KEY = os.getenv('SECRET_KEY')  # Replace with a strong secret key
+print(f"SECRET_KEY is set to: {SECRET_KEY}")  # Print SECRET_KEY for debugging
+
+
+
 DEBUG = os.getenv("DEBUG", "False").lower() in ["true", "1"]
 print(f"DEBUG is set to: {DEBUG}")  # Print DEBUG value for debugging
 
 ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "").split(",") if host.strip()]
+print(f"ALLOWED_HOSTS are set to: {ALLOWED_HOSTS}")  # Print ALLOWED_HOSTS for debugging
+
+
+
 # Installed Apps
 INSTALLED_APPS = [
     # 'admin_soft.apps.AdminSoftDashboardConfig',
@@ -77,25 +84,25 @@ TEMPLATES = [
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 # Database
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('PGDATABASE'),
+        'USER': os.environ.get('PGUSER'),
+        'PASSWORD': os.environ.get('PGPASSWORD'),
+        'HOST': os.environ.get('PGHOST'),
+        'PORT': os.environ.get('PGPORT', '5432'),
+        # Don't add 'ssl': 'true' here
     }
+    
 }
-
-# Correct way to load the env var
-database_url = os.getenv("DATABASE_URL")
-
-# This line will raise error if database_url is None or bytes
-print(f"DATABASE_URL is: {repr(database_url)}")
-
-# Parse the DB URL
-DATABASES = {
-    'default': dj_database_url.parse(database_url)
-}
-print(repr(os.getenv("DATABASE_URL")))
-
 
 # Password Validation
 AUTH_PASSWORD_VALIDATORS = [

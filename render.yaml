@@ -7,29 +7,3 @@ services:
 
     dockerfilePath: ./Dockerfile
 
-    envVars:
-      - key: DJANGO_SETTINGS_MODULE
-        value: portfolio.settings
-      - key: SECRET_KEY
-        value: your-django-secret-key
-      - key: DEBUG
-        value: "False"
-      - key: DJANGO_SUPERUSER_USERNAME
-        value: Saran2005
-      - key: DJANGO_SUPERUSER_EMAIL
-        value: saranraj2005jsus@gmail.com
-      - key: DJANGO_SUPERUSER_PASSWORD
-        value: 23UEAM0056
-      - key: EMAIL_HOST_USER
-        value: noreplay.saran@gmail.com
-      - key: EMAIL_HOST_PASSWORD
-        value: your-app-password
-      - key: ALLOWED_HOSTS
-        value: localhost,127.0.0.1,saran-developer.me,www.saran-developer.me,.onrender.com,vercel.com
-      - key: GEMINI_API_KEYS
-        value: comma,separated,keys
-      - key: ZEROBOUNCE_API_KEYS
-        value: comma,separated,keys
-      - key: DATABASE_URL
-        value: postgresql://from-yaml
-
