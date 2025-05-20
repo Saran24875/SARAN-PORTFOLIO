@@ -2,6 +2,7 @@ services:
   - type: web
     name: saran-portfolio
     env: docker
+    startCommand: "gunicorn portfolio.wsgi:application --bind 0.0.0.0:$PORT"
     plan: free
     region: asia-southeast1
     dockerfilePath: ./Dockerfile
