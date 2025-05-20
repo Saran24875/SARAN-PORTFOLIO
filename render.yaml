@@ -4,6 +4,6 @@ services:
     env: docker
     plan: free
     region: asia-southeast1
-
     dockerfilePath: ./Dockerfile
-
+    envVars:
+      - fromGroup: saran-portfolio-env  # 👈 You’ll create this in Render dashboard
