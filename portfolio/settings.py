@@ -3,21 +3,22 @@ import os
 from pathlib import Path
 import sys
 from dotenv import load_dotenv
-load_dotenv()  # Load environment variables
+# load_dotenv()  # Load environment variables
 
 
 
 # Base Directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(str(BASE_DIR / "apps"))
+load_dotenv(dotenv_path=BASE_DIR / '.env')
 
 # Security
 SECRET_KEY = os.getenv('SECRET_KEY')  # Replace with a strong secret key
 
-
+load_dotenv(BASE_DIR / '.env')
 
 DEBUG = os.getenv("DEBUG", "False").lower() in ["true", "1"]
-print(f"DEBUG is set to: {DEBUG}")  # Print DEBUG value for debugging
+
 
 ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "").split(",") if host.strip()]
 
@@ -158,7 +159,8 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 GEMINI_API_KEYS = [key.strip() for key in os.getenv("GEMINI_API_KEYS", "").split(",") if key.strip()]
 
-ZEROBOUNCE_API_KEYS = [key.strip() for key in os.getenv("ZEROBOUNCE_API_KEYS", "").split(",") if key.strip()]
+ZEROBOUNCE_API_KEY = [key.strip() for key in os.getenv("ZEROBOUNCE_API_KEY", "").split(",") if key.strip()]
+
 
 
 # Print to test (you can remove these lines later)
