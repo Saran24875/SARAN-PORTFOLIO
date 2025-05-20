@@ -30,3 +30,6 @@ services:
         value: comma,separated,keys
       - key: ZEROBOUNCE_API_KEYS
         value: comma,separated,keys
+      - key: DATABASE_URL
+        value: postgresql://from-yaml
+
