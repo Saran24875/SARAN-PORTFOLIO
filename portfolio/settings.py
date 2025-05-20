@@ -4,6 +4,9 @@ from pathlib import Path
 import sys
 from dotenv import load_dotenv
 
+load_dotenv()  # Load environment variables
+
+
 
 # Base Directory
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,8 +83,17 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Correct way to load the env var
 database_url = os.getenv("DATABASE_URL")
-DATABASES['default'] = dj_database_url.parse(database_url)
+
+# This line will raise error if database_url is None or bytes
+print(f"DATABASE_URL is: {repr(database_url)}")
+
+# Parse the DB URL
+DATABASES = {
+    'default': dj_database_url.parse(database_url)
+}
 print(repr(os.getenv("DATABASE_URL")))
 
 
@@ -125,7 +137,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-load_dotenv()  # Load environment variables
 
 
 
