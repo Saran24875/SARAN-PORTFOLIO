@@ -16,6 +16,7 @@ colorthief==0.2.1
 commonmark==0.9.1
 cryptography==43.0.3
 dateparser==1.2.1
+DateTime==5.5
 defusedxml==0.8.0rc2
 distro==1.9.0
 dj-database-url==2.3.0
