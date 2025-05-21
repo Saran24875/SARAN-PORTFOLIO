@@ -15,7 +15,7 @@ load_dotenv(dotenv_path=BASE_DIR / '.env')
 # Security
 SECRET_KEY = os.getenv('SECRET_KEY')  # Replace with a strong secret key
 
-load_dotenv(BASE_DIR / '.env')
+# load_dotenv(BASE_DIR / '.env')
 
 DEBUG = os.getenv("DEBUG", "False").lower() in ["true", "1"]
 
@@ -26,6 +26,8 @@ ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "").split("
 
 # Installed Apps
 INSTALLED_APPS = [
+    'cloudinary',
+    'cloudinary_storage',
     # 'admin_soft.apps.AdminSoftDashboardConfig',
     # "unfold",  # Add this line (must be above 'django.contrib.admin')
     'jazzmin',
@@ -124,11 +126,21 @@ STATIC_ROOT = BASE_DIR / "staticfiles"  # Collected static files for production
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # Enable caching and compression
 
 # Media Files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "media"
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / "media"
 
-# Print MEDIA_ROOT for debugging
-print(f"MEDIA_ROOT is set to: {MEDIA_ROOT}")
+# # Print MEDIA_ROOT for debugging
+# print(f"MEDIA_ROOT is set to: {MEDIA_ROOT}")
+
+# Cloudinary Media Configuration
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
 
 # Default Primary Key Field Type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -159,8 +171,8 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 GEMINI_API_KEYS = [key.strip() for key in os.getenv("GEMINI_API_KEYS", "").split(",") if key.strip()]
 
-ZEROBOUNCE_API_KEY = [key.strip() for key in os.getenv("ZEROBOUNCE_API_KEY", "").split(",") if key.strip()]
-
+ZEROBOUNCE_API_KEYS = [key.strip() for key in os.getenv("ZEROBOUNCE_API_KEYS", "").split(",") if key.strip()]
+print(ZEROBOUNCE_API_KEYS)
 
 
 # Print to test (you can remove these lines later)
