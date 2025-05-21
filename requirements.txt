@@ -29,6 +29,7 @@ django-viewflow==2.2.9
 djangorestframework==3.14.0
 dnspython==2.7.0
 flatbuffers==25.2.10
+gevent==25.5.1
 ggshield==1.37.0
 google-ai-generativelanguage==0.6.15
 google-api-core==2.24.1
@@ -40,7 +41,7 @@ googleapis-common-protos==1.66.0
 graphene==2.1.9
 graphql-core==2.3.2
 graphql-relay==2.0.1
-greenlet==3.1.1
+greenlet==3.2.2
 grpcio==1.70.0
 grpcio-status==1.70.0
 gunicorn==21.2.0
@@ -93,6 +94,7 @@ PyNaCl==1.5.0
 pyparsing==3.2.1
 pyreadline3==3.5.4
 python-dateutil==2.9.0.post0
+python-decouple==3.8
 python-dotenv==0.21.1
 python3-openid==3.2.0
 pytz==2024.2
@@ -126,3 +128,5 @@ uritemplate==4.1.1
 urllib3==2.2.3
 wcwidth==0.2.13
 whitenoise==6.5.0
+zope.event==5.0
+zope.interface==7.2
