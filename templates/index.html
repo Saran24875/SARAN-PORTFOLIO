@@ -9,6 +9,30 @@
 
   gtag('config', 'G-F1BGMJDJEH');
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/1.0.2/ua-parser.min.js"></script>
+<script>
+  const parser = new UAParser();
+  const result = parser.getResult();
+
+  const deviceInfo = {
+    device: result.device.model || "Unknown",
+    brand: result.device.vendor || "Unknown",
+    type: result.device.type || "Desktop",
+    os: result.os.name + " " + result.os.version,
+    browser: result.browser.name + " " + result.browser.version
+  };
+
+  fetch('/log-device-info/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': '{{ csrf_token }}'  // if using CSRF
+    },
+    body: JSON.stringify(deviceInfo)
+  });
+</script>
+
 <section class="hero-section" id="hero">
   <button id="scrollBtn" class="scroll-button">Scroll Down <i class="fa fa-angle-double-down"></i></button>
 

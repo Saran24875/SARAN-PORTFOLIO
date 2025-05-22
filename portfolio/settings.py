@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.services',
     'apps.education',
     'apps.github',
+    'apps.tracking',
     'colorfield',  # GitHub Integration App
 ]
 

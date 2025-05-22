@@ -1,0 +1,41 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>Device Log Charts</h1>
+<div>
+  <canvas id="osChart"></canvas>
+  <canvas id="browserChart"></canvas>
+  <canvas id="typeChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const osData = {{ os_data|safe }};
+  const browserData = {{ browser_data|safe }};
+  const typeData = {{ type_data|safe }};
+
+  function drawChart(ctxId, title, data) {
+    new Chart(document.getElementById(ctxId), {
+      type: 'bar',
+      data: {
+        labels: Object.keys(data),
+        datasets: [{
+          label: title,
+          data: Object.values(data),
+          backgroundColor: 'rgba(54, 162, 235, 0.7)'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: { display: true, text: title }
+        }
+      }
+    });
+  }
+
+  drawChart("osChart", "OS Distribution", osData);
+  drawChart("browserChart", "Browser Distribution", browserData);
+  drawChart("typeChart", "Device Type Distribution", typeData);
+</script>
+{% endblock %}

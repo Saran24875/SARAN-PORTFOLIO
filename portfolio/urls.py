@@ -21,6 +21,7 @@ urlpatterns = [
     path("apps/services/", include("apps.services.urls")),
     path("apps/education/", include("apps.education.urls")),
     path("apps/github/", include("apps.github.urls")),
+    path("apps/tracking/", include("apps.tracking.urls")),
 
 
     path("health/", health_check),
