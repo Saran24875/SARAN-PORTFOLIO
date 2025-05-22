@@ -6,6 +6,8 @@ from django.core.files.base import ContentFile
 from collections import Counter
 import colorsys
 from colorfield.fields import ColorField
+from cloudinary_storage.storage import MediaCloudinaryStorage
+
 
 
 
@@ -14,7 +16,7 @@ class PersonalBranding(models.Model):
     tagline = models.CharField(max_length=150,help_text="Enter your tagline. Comma separated for multiple taglines.(eg. Frontend Developer, Backend Developer)")
     about = models.TextField(help_text="Enter your about. This will be displayed on the about Section.",null=True,blank=True)
     bio = models.TextField(help_text="Enter your bio. This will be displayed on the about Section on the contact page.")
-    profile_picture = models.ImageField(upload_to='branding/profile_pictures/',help_text="Upload your profile picture For the lite Mode and If you want to remove the background from your profile picture, please check the 'Remove Background' checkbox.")
+    profile_picture = models.ImageField(upload_to='branding/profile_pictures/',storage=MediaCloudinaryStorage(),help_text="Upload your profile picture For the lite Mode and If you want to remove the background from your profile picture, please check the 'Remove Background' checkbox.")
     remove_bg = models.BooleanField(default=False,help_text="If you want to remove the background from your profile picture, please check this checkbox.")  # Checkbox for background removal
     profile_picture_for_mobile = models.ImageField(upload_to='branding/profile_picture_for_mobile/',null=True,blank=False,help_text="Upload your profile picture For the lite Mode and If you want to remove the background from your profile picture, please check the 'Remove Background' checkbox.")
     Dark_mode_profile_picture = models.ImageField(upload_to='branding/background_images/',help_text="Upload your dark mode profile picture For the dark mode. This will be displayed in dark mode.")
