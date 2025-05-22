@@ -4,6 +4,8 @@ from PIL import Image
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.mail import send_mail
 from django.conf import settings
+from cloudinary_storage.storage import MediaCloudinaryStorage
+
 
 
 
@@ -130,34 +132,34 @@ class Project(models.Model):
     )
 
     Card_image = models.ImageField(null=True,
-        upload_to='projects/images/', 
+        upload_to='projects/images/',storage=MediaCloudinaryStorage(), 
         
                validators=[validate_landscape_image],
                help_text="this image will be displayed on the project card"# Ensures only square images are uploaded
     )
     
     Project_image_1 = models.ImageField(null=True,
-        upload_to='projects/images/', 
+        upload_to='projects/images/',storage=MediaCloudinaryStorage(), 
         
                validators=[validate_landscape_image]  # Ensures only square images are uploaded
     )
     Project_image_2 = models.ImageField(null=True,
-        upload_to='projects/images/', 
+        upload_to='projects/images/',storage=MediaCloudinaryStorage(), 
         
                validators=[validate_landscape_image]  # Ensures only square images are uploaded
     )
     Project_image_3 = models.ImageField(null=True,
-        upload_to='projects/images/', 
+        upload_to='projects/images/',storage=MediaCloudinaryStorage(), 
         
                validators=[validate_landscape_image]  # Ensures only square images are uploaded
     )
     Project_image_4 = models.ImageField(null=True,
-        upload_to='projects/images/', 
+        upload_to='projects/images/',storage=MediaCloudinaryStorage(), 
         
                validators=[validate_landscape_image]  # Ensures only square images are uploaded
     )
     Project_image_5 = models.ImageField(null=True,
-        upload_to='projects/images/', 
+        upload_to='projects/images/',storage=MediaCloudinaryStorage(), 
         
                validators=[validate_landscape_image]  # Ensures only square images are uploaded
     )

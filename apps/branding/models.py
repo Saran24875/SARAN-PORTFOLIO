@@ -18,16 +18,16 @@ class PersonalBranding(models.Model):
     bio = models.TextField(help_text="Enter your bio. This will be displayed on the about Section on the contact page.")
     profile_picture = models.ImageField(upload_to='branding/profile_pictures/',storage=MediaCloudinaryStorage(),help_text="Upload your profile picture For the lite Mode and If you want to remove the background from your profile picture, please check the 'Remove Background' checkbox.")
     remove_bg = models.BooleanField(default=False,help_text="If you want to remove the background from your profile picture, please check this checkbox.")  # Checkbox for background removal
-    profile_picture_for_mobile = models.ImageField(upload_to='branding/profile_picture_for_mobile/',null=True,blank=False,help_text="Upload your profile picture For the lite Mode and If you want to remove the background from your profile picture, please check the 'Remove Background' checkbox.")
-    Dark_mode_profile_picture = models.ImageField(upload_to='branding/background_images/',help_text="Upload your dark mode profile picture For the dark mode. This will be displayed in dark mode.")
-    resume = models.FileField(upload_to='branding/resumes/', blank=False, null=True, help_text="Upload your resume in the format of .pdf or .docx")
+    profile_picture_for_mobile = models.ImageField(upload_to='branding/profile_picture_for_mobile/',storage=MediaCloudinaryStorage(),null=True,blank=False,help_text="Upload your profile picture For the lite Mode and If you want to remove the background from your profile picture, please check the 'Remove Background' checkbox.")
+    Dark_mode_profile_picture = models.ImageField(upload_to='branding/background_images/',storage=MediaCloudinaryStorage(),help_text="Upload your dark mode profile picture For the dark mode. This will be displayed in dark mode.")
+    resume = models.FileField(upload_to='branding/resumes/',storage=MediaCloudinaryStorage(), blank=False, null=True, help_text="Upload your resume in the format of .pdf or .docx")
 
 
-    favicon_ico = models.ImageField(upload_to='branding/favicon_ico/',blank=True,null=True,help_text="Upload your favicon in .ico format. This will be displayed in the browser tab.")
-    favicon_svg= models.ImageField(upload_to='branding/favicon_svg/',blank=True,null=True,help_text="Upload your favicon in .svg format. This will be displayed in the browser tab.")
-    favicon_96x96= models.ImageField(upload_to='branding/favicon-96x96/',blank=True,null=True,help_text="Upload your favicon in 96x96 .png format. This will be displayed in the browser tab.")
-    apple_touch_icon= models.ImageField(upload_to='branding/apple_touch_icon/', blank=True, null=True,help_text="Upload your Apple Touch icon in .png format. This will be used for Apple devices.")
-    site_webmanifest= models.ImageField(upload_to='branding/site_webmanifest/',blank=True,null=True,help_text="Upload your site webmanifest in .webmanifest format. This defines app metadata for browsers.")
+    favicon_ico = models.ImageField(upload_to='branding/favicon_ico/',storage=MediaCloudinaryStorage(),blank=True,null=True,help_text="Upload your favicon in .ico format. This will be displayed in the browser tab.")
+    favicon_svg= models.ImageField(upload_to='branding/favicon_svg/',storage=MediaCloudinaryStorage(),blank=True,null=True,help_text="Upload your favicon in .svg format. This will be displayed in the browser tab.")
+    favicon_96x96= models.ImageField(upload_to='branding/favicon-96x96/',storage=MediaCloudinaryStorage(),blank=True,null=True,help_text="Upload your favicon in 96x96 .png format. This will be displayed in the browser tab.")
+    apple_touch_icon= models.ImageField(upload_to='branding/apple_touch_icon/',storage=MediaCloudinaryStorage(), blank=True, null=True,help_text="Upload your Apple Touch icon in .png format. This will be used for Apple devices.")
+    site_webmanifest= models.ImageField(upload_to='branding/site_webmanifest/',storage=MediaCloudinaryStorage(),blank=True,null=True,help_text="Upload your site webmanifest in .webmanifest format. This defines app metadata for browsers.")
     
     
     Primary_color = ColorField(default='none',help_text="Enter or select your primary color. This will the background color of your website.")  
