@@ -38,8 +38,7 @@ def validate_service_fields(instance):
     # Ensure mutual dependency between `description` and `Other_description`
     if instance.description and instance.Other_description:
         errors.append("If 'description' is provided, then 'Other_description' must also be provided.")
-    if instance.Other_description and not instance.description:
-        errors.append("If 'Other_description' is provided, then 'description' must also be provided.")
+
 
     # Raise ValidationError if any issues exist
     if errors:

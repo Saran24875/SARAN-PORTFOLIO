@@ -11,10 +11,16 @@ from cloudinary_storage.storage import MediaCloudinaryStorage
 
 def validate_landscape_image(image):
     """Ensures the uploaded image is landscape (width > height)."""
-    img = Image.open(image)
-    width, height = img.size
-    if width <= height:  # Reject if square or portrait
-        raise ValidationError("Only landscape images are allowed. Please upload an image where width is greater than height.")
+    if not image or not hasattr(image, 'file') or image.size == 0:
+        return  # Skip validation if image is empty or not provided
+
+    try:
+        img = Image.open(image)
+        width, height = img.size
+        if width <= height:
+            raise ValidationError("Only landscape images are allowed. Please upload an image where width is greater than height.")
+    except Exception as e:
+        raise ValidationError(f"Invalid image: {e}")
 
 
 def validate_square_image(image):
@@ -131,34 +137,34 @@ class Project(models.Model):
         help_text="Description of challenges encountered during the project development."
     )
 
-    Card_image = models.ImageField(null=True,
+    Card_image = models.ImageField(null=True,blank=False,
         upload_to='projects/images/',storage=MediaCloudinaryStorage(), 
         
                validators=[validate_landscape_image],
                help_text="this image will be displayed on the project card"# Ensures only square images are uploaded
     )
     
-    Project_image_1 = models.ImageField(null=True,
+    Project_image_1 = models.ImageField(null=True,blank=False,
         upload_to='projects/images/',storage=MediaCloudinaryStorage(), 
         
                validators=[validate_landscape_image]  # Ensures only square images are uploaded
     )
-    Project_image_2 = models.ImageField(null=True,
+    Project_image_2 = models.ImageField(null=True,blank=False,
         upload_to='projects/images/',storage=MediaCloudinaryStorage(), 
         
                validators=[validate_landscape_image]  # Ensures only square images are uploaded
     )
-    Project_image_3 = models.ImageField(null=True,
+    Project_image_3 = models.ImageField(null=True,blank=False,
         upload_to='projects/images/',storage=MediaCloudinaryStorage(), 
         
                validators=[validate_landscape_image]  # Ensures only square images are uploaded
     )
-    Project_image_4 = models.ImageField(null=True,
+    Project_image_4 = models.ImageField(null=True,blank=False,
         upload_to='projects/images/',storage=MediaCloudinaryStorage(), 
         
                validators=[validate_landscape_image]  # Ensures only square images are uploaded
     )
-    Project_image_5 = models.ImageField(null=True,
+    Project_image_5 = models.ImageField(null=True,blank=False,
         upload_to='projects/images/',storage=MediaCloudinaryStorage(), 
         
                validators=[validate_landscape_image]  # Ensures only square images are uploaded
