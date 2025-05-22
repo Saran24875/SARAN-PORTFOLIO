@@ -172,7 +172,6 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 GEMINI_API_KEYS = [key.strip() for key in os.getenv("GEMINI_API_KEYS", "").split(",") if key.strip()]
 
 ZEROBOUNCE_API_KEYS = [key.strip() for key in os.getenv("ZEROBOUNCE_API_KEYS", "").split(",") if key.strip()]
-print(ZEROBOUNCE_API_KEYS)
 
 
 # Print to test (you can remove these lines later)
