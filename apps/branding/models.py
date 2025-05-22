@@ -39,6 +39,10 @@ class PersonalBranding(models.Model):
             # Store the public URL in the database
             self.resume.name = upload_result['secure_url']
         super().save(*args, **kwargs)
+    
+    @property
+    def resume_url(self):
+        return self.resume.name  # ✅ This is now your Cloudinary URL
 
     favicon_ico = models.ImageField(upload_to='branding/favicon_ico/',storage=MediaCloudinaryStorage(),blank=True,null=True,help_text="Upload your favicon in .ico format. This will be displayed in the browser tab.")
     favicon_svg= models.ImageField(upload_to='branding/favicon_svg/',storage=MediaCloudinaryStorage(),blank=True,null=True,help_text="Upload your favicon in .svg format. This will be displayed in the browser tab.")
