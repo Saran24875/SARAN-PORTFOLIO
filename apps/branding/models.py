@@ -7,6 +7,8 @@ from collections import Counter
 import colorsys
 from colorfield.fields import ColorField
 from cloudinary_storage.storage import MediaCloudinaryStorage
+from .storages import RawCloudinaryStorage  # import your custom storage
+
 
 
 
@@ -20,8 +22,7 @@ class PersonalBranding(models.Model):
     remove_bg = models.BooleanField(default=False,help_text="If you want to remove the background from your profile picture, please check this checkbox.")  # Checkbox for background removal
     profile_picture_for_mobile = models.ImageField(upload_to='branding/profile_picture_for_mobile/',storage=MediaCloudinaryStorage(),null=True,blank=False,help_text="Upload your profile picture For the lite Mode and If you want to remove the background from your profile picture, please check the 'Remove Background' checkbox.")
     Dark_mode_profile_picture = models.ImageField(upload_to='branding/background_images/',storage=MediaCloudinaryStorage(),help_text="Upload your dark mode profile picture For the dark mode. This will be displayed in dark mode.")
-    resume = models.FileField(upload_to='branding/resumes/',storage=MediaCloudinaryStorage(), blank=False, null=True, help_text="Upload your resume in the format of .pdf or .docx")
-
+    resume = models.FileField(upload_to='branding/resumes/', storage=RawCloudinaryStorage(), blank=False, null=True, help_text="Upload your resume in the format of .pdf or .docx" )
 
     favicon_ico = models.ImageField(upload_to='branding/favicon_ico/',storage=MediaCloudinaryStorage(),blank=True,null=True,help_text="Upload your favicon in .ico format. This will be displayed in the browser tab.")
     favicon_svg= models.ImageField(upload_to='branding/favicon_svg/',storage=MediaCloudinaryStorage(),blank=True,null=True,help_text="Upload your favicon in .svg format. This will be displayed in the browser tab.")
