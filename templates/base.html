@@ -139,6 +139,7 @@
 
   <body>
     {% with request.path as path %}
+    {% block navbar %}
     <header class="site-header">
       <nav class="navbar">
         <ul class="nav-links">
@@ -211,6 +212,7 @@
         </ul>
       </nav>
     </header>
+    {% endblock %}
     {% endwith %}
 
     <main>

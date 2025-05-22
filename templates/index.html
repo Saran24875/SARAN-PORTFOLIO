@@ -1,6 +1,14 @@
 {% extends 'base.html' %} {% load static %} {% block title %}Home{% endblock %}
 {% block content %}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F1BGMJDJEH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-F1BGMJDJEH');
+</script>
 <section class="hero-section" id="hero">
   <button id="scrollBtn" class="scroll-button">Scroll Down <i class="fa fa-angle-double-down"></i></button>
 
@@ -136,7 +144,7 @@
         ><span class="dynamic-roles">{{branding.tagline}}</span>");
       </p>
       <div class="button-group">
-        <a href="{% url 'contact' %}" class="btn"
+        <a href="#contactpage" class="btn"
           ><i class="bi bi-headset"> </i>Hire Me!</a
         >
         <a
@@ -153,7 +161,7 @@
         >
         {% endcomment %}
         <a href="{% url 'projects:projects' %}" class="btn"
-          ><i class="bi bi-collection"></i> Projects</a
+          ><i class="bi bi-collection"></i> All Projects</a
         >
 
         <!-- Custom Pop-up -->
