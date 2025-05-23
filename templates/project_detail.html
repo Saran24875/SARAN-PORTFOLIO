@@ -129,10 +129,14 @@
           action="{% url 'projects:contact_project' project.id %}"
           class="detailsform"
         >
-          {% csrf_token %} {{ contact_form.as_p }} {% if messages %} {% for
-          message in messages %} {% if message.tags == 'success' %}
-          <div class="alert alertdel-success">{{ message }}</div>
-          {% endif %} {% endfor %} {% endif %}
+          {% csrf_token %} {{ contact_form.as_p }} 
+            {% if messages %}
+              {% for message in messages %} 
+                {% if message.tags == 'success' %}
+                  <div class="alert alertdel-success">{{ message }}</div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
           <button type="delsubmit">Send Message</button>
         </form>
       </div>
