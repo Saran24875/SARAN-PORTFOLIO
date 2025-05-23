@@ -2434,8 +2434,12 @@ textarea::placeholder {
 }
 
 
+.home-edu .project .back-button{
+  display: none;
+}
 .home-edu .project {
   margin-bottom: 200px;
+  
 }
 
 /* Scrollbar container */

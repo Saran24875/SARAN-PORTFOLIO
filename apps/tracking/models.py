@@ -1,5 +1,10 @@
 from django.db import models
 
+# ======================
+# DeviceLog Model
+# ======================
+from django.db import models
+
 class DeviceLog(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     ip_address = models.GenericIPAddressField()

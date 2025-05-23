@@ -1,8 +1,20 @@
 import csv
-from django.http import HttpResponse
+import json
+from collections import Counter
+from datetime import datetime
 from django.contrib import admin
+from django.contrib.admin.views.decorators import staff_member_required
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render
+from django.urls import path, reverse
+from django.utils.html import format_html
+from django.views.decorators.csrf import csrf_exempt
 from .models import DeviceLog
 
+
+# ======================
+# Admin
+# ======================
 @admin.register(DeviceLog)
 class DeviceLogAdmin(admin.ModelAdmin):
     list_display = ('timestamp', 'ip_address', 'brand', 'device', 'device_type', 'os', 'browser')
@@ -15,10 +27,7 @@ class DeviceLogAdmin(admin.ModelAdmin):
         response["Content-Disposition"] = 'attachment; filename="device_logs.csv"'
         writer = csv.writer(response)
 
-        # Write header
         writer.writerow(['Timestamp', 'IP Address', 'Brand', 'Device', 'Type', 'OS', 'Browser'])
-
-        # Write data rows
         for log in queryset:
             writer.writerow([
                 log.timestamp,
@@ -29,7 +38,15 @@ class DeviceLogAdmin(admin.ModelAdmin):
                 log.os,
                 log.browser
             ])
-
         return response
 
     export_as_csv.short_description = "Export Selected Logs to CSV"
+
+    def changelist_view(self, request, extra_context=None):
+        if extra_context is None:
+            extra_context = {}
+        extra_context['charts_url'] = reverse("device-charts")
+        return super().changelist_view(request, extra_context=extra_context)
+
+    def has_add_permission(self, request):
+        return False
