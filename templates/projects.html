@@ -42,9 +42,16 @@
     </div>
     {% endfor %}
   </div>
-<button class="view-more" id="view-more" onclick="window.location.href='{% url 'projects:projects' %}'" aos="fade-left">
+{% comment %} <button class="view-more" id="view-more" onclick="window.location.href='{% url 'projects:projects' %}'" aos="fade-left">
     View More <i class="fa fa-angle-double-right"></i>
-  </button>
+  </button> {% endcomment %}
+
+        <div class="button-group" data-aos="fade-up" data-aos-duration="1000" id="view-more-button-container"> 
+           <a href="{% url 'projects:projects' %}" class="btn" id="view-more-button"
+          >View More <i class="fa fa-angle-double-right"></i></a
+        >
+        </div>
+
   {% else %} {% comment %}
   <p class="exception">No education information available</p>
   {% endcomment %}

@@ -1229,7 +1229,7 @@ textarea::placeholder {
   stroke-linecap: round;
   stroke-dasharray: 212.25 70.75;
   stroke-dashoffset: 106.125;
-  transition: stroke-dashoffset 1s ease-in-out, stroke 1s ease-in-out;
+  transition: stroke-dashoffset 5s ease-in-out, stroke 1s ease-in-out;
 }
 
 .progress-ring {
@@ -1259,6 +1259,17 @@ textarea::placeholder {
 }
 
 
+/* .level {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  color: var(--text-color);
+}
+
+.level[data-animated="true"] {
+  opacity: 1;
+  transform: translateY(0);
+} */
 
 
 
@@ -1471,6 +1482,20 @@ textarea::placeholder {
 }
 
 
+  #view-more-button{
+    margin-top: 30px;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    /* border: 2px solid var(--hover-color); */
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+
+    
+  }
+  #view-more-button:hover{
+    margin-top: 30px;
+    background-color: var(--hover-color);
+    color: var(--text-color);
+  }
 
 
 
@@ -2064,11 +2089,17 @@ textarea::placeholder {
   position: absolute;
   left: 50%;
   top: 0;
-  bottom: 0;
   width: 2px;
+  height: 100%; /* We'll control the visible part via transform */
   background-color: var(--hover-color);
-  animation: lineGrow 3s linear forwards;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transform: scaleY(0); /* Start hidden */
+  transform-origin: top;
+  transition: transform 2s ease, background-color 0.5s ease, color 0.5s ease;
+  z-index: 0;
+}
+
+.education-list.active::before {
+  transform: scaleY(1);
 }
 
 /* Each timeline item */
@@ -2083,6 +2114,7 @@ textarea::placeholder {
   color: var(--text-color);
   transition: background-color 0.5s ease, color 0.5s ease;
   margin-left: 4px;
+  z-index: 1;
 
 }
 
@@ -2464,6 +2496,28 @@ textarea::placeholder {
   margin-bottom: 200px;
   
 }
+
+.home-edu .project #view-more-button{
+    display: inline-block;
+    font-size: 0.7rem;
+    margin-top: 30px;
+    background-color: var(--hover-color);
+    color: var(--text-color);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+
+  }
+  
+.home-edu .project #view-more-button:hover {
+    margin-top: 30px;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    /* border: 2px solid var(--hover-color); */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+
+    
+  } 
+
+
 
 /* Scrollbar container */
 ::-webkit-scrollbar {
@@ -2964,6 +3018,14 @@ textarea::placeholder {
     background: var(--hover-color);
     color: var(--text-color);
   }
+  #view-more-button{
+    display: none;
+
+  }
+#back_button-pjdet{
+  display: none;
+}
+
 
 
 

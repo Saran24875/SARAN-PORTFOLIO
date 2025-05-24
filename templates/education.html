@@ -5,8 +5,11 @@
   <h2 class="tittleedu" data-aos="fade-up"> Educational  Journey </h2>
   {%if education %}
   <div class="education-list">
+      <div class="line"></div>
+
 {% for education in education|dictsortreversed:"graduation_date" %}
-  <div class="education-item" data-aos="{% if forloop.counter|divisibleby:2 %}fade-left{% else %}fade-right{% endif %}" data-aos-duration="1000">
+  {% comment %} <div class="education-item" data-aos="{% if forloop.counter|divisibleby:2 %}fade-left{% else %}fade-right{% endif %}" data-aos-duration="1000"> {% endcomment %}
+  <div class="education-item" data-aos="fade-up" data-aos-duration="1000">
     <!-- Timeline icon that will hold a random icon -->
     <span class="timeline-icon"></span>
     <h3>{{ education.degree }}</h3>
@@ -31,5 +34,54 @@
   </div>
     {% endif %}
   </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const educationList = document.querySelector(".education-list");
+  const line = educationList.querySelector("::before"); // Note: Pseudo-elements can't be directly selected
+
+  // Workaround: Apply a real child element for the line (since we can't style pseudo-elements via JS directly)
+  // Replace ::before with an actual <div class="line"> inside .education-list in your HTML:
+  // <div class="education-list"><div class="line"></div> ...content... </div>
+
+  const lineElement = document.createElement("div");
+  lineElement.classList.add("line");
+  educationList.appendChild(lineElement);
+
+  // Style the real .line element in CSS:
+  const css = `
+    .education-list .line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background-color: var(--hover-color);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.1s linear;
+    }
+  `;
+  const style = document.createElement("style");
+  style.textContent = css;
+  document.head.appendChild(style);
+
+  window.addEventListener("scroll", () => {
+    const rect = educationList.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Calculate scroll progress within the viewport
+    const start = windowHeight * 0.8; // Start growing when the top is 80% down the screen
+    const end = windowHeight * 0.2;   // Finish growing when the top is 20% down the screen
+
+    let progress = (start - rect.top) / (start - end);
+    progress = Math.max(0, Math.min(1, progress)); // Clamp between 0 and 1
+
+    // Apply scaling
+    lineElement.style.transform = `scaleY(${progress})`;
+  });
+});
+</script>
+
+
 </section>
 {% endblock %}

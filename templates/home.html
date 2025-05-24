@@ -177,41 +177,89 @@
 </div>
 {% endif %}
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".skill-card").forEach(card => {
-    const level = parseInt(card.getAttribute("data-level"), 10);
-    const progressRing = card.querySelector(".progress-ring");
+  document.addEventListener("DOMContentLoaded", function () {
+    const skillCards = document.querySelectorAll(".skill-card");
 
-    // Ensure level is between 0 and 100
-    const clampedLevel = Math.max(0, Math.min(100, level));
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const level = parseInt(card.getAttribute("data-level"), 10);
+          const progressRing = card.querySelector(".progress-ring");
+          
 
-    // New dashoffset calculation:
-    // - At 0% progress -> stroke-dashoffset = 212.25 (fully hidden)
-    // - At 100% progress -> stroke-dashoffset = 0 (fully visible)
-    const progressOffset = (1 - clampedLevel / 100) * 212.25;
-    progressRing.style.strokeDashoffset = progressOffset;
+          // Ensure level is between 0 and 100
+          const clampedLevel = Math.max(0, Math.min(100, level));
 
-    // Adjust stroke color based on level:
-    let color;
+          // Calculate progress offset
+          const progressOffset = (1 - clampedLevel / 100) * 212.25;
+          progressRing.style.strokeDashoffset = progressOffset;
 
-    if (clampedLevel >= 35 && clampedLevel <= 50) {
-      color = "var(--text-color)"; // Green
-    } else if (clampedLevel >= 51 && clampedLevel <= 70) {
-      color = "var(--text-color)"; // Yellow
-    } else if (clampedLevel >= 71 && clampedLevel <= 85) {
-      color = "var(--hover-color)"; // Orange
-    } else if (clampedLevel >= 86 && clampedLevel <= 100) {
-      color = "var(--hover-color)"; // Red
-    } else {
-      color = "var(--button-color)"; // Optional: Handle values outside range
-    }
-    
+          // Adjust stroke color based on level:
+          let color;
+          if (clampedLevel >= 35 && clampedLevel <= 50) {
+            color = "var(--text-color)"; // Green
+          } else if (clampedLevel >= 51 && clampedLevel <= 70) {
+            color = "var(--text-color)"; // Yellow
+          } else if (clampedLevel >= 71 && clampedLevel <= 85) {
+            color = "var(--hover-color)"; // Orange
+          } else if (clampedLevel >= 86 && clampedLevel <= 100) {
+            color = "var(--hover-color)"; // Red
+          } else {
+            color = "var(--button-color)";
+          }
 
-    progressRing.style.stroke = color;
+          progressRing.style.stroke = color;
+
+          // Optionally stop observing this element after processing
+          observer.unobserve(card);
+        }
+      });
+    }, {
+      threshold: 0.3 // Adjust this threshold as needed
+    });
+
+    // Observe each skill card
+    skillCards.forEach(card => observer.observe(card));
   });
-});
-
-      
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const levels = document.querySelectorAll(".skill-card .level");
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const targetValue = parseInt(el.textContent, 10);
+        let currentValue = 0;
+        const duration = 1500; // ms
+        const startTime = performance.now();
+
+        function update(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          currentValue = Math.floor(progress * targetValue);
+          el.textContent = `${currentValue}%`;
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            el.textContent = `${targetValue}%`;
+            el.setAttribute("data-animated", "true");
+          }
+        }
+
+        requestAnimationFrame(update);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  levels.forEach(level => observer.observe(level));
+});
+</script>
+
+
 
 {% endblock %}
