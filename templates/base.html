@@ -15,7 +15,7 @@
     <meta property="og:description" content="Hi, I'm {{ branding.name }} – a passionate developer building awesome web experiences.">
     <meta property="og:type" content="website">
 
-    {% if og_image %}
+    {% if branding.og_image.url %}
       <meta property="og:image" content="{{ branding.og_image.url }}">
       <meta property="og:image:secure_url" content="{{ branding.og_image.url }}">
       <meta property="og:image:type" content="image/png">
@@ -29,7 +29,7 @@
       <meta property="og:image:height" content="96">
     {% endif %}
 
-    {% if this_site_url %}
+    {% if branding.this_site_url.url %}
       <meta property="og:url" content="{{ this_site_url }}">
     {% else %}
       <meta property="og:url" content="{{ request.build_absolute_uri }}">
