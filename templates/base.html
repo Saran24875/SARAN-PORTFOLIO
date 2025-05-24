@@ -148,12 +148,12 @@
     {% comment %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     {% endcomment %}
-    {% comment %} <meta name="description" content="{{ branding.description }}" /> {% endcomment %}
+    <meta name="description" content="{{ branding.description }}" />
 
     {% block extra_head %}{% endblock %}
 
     <!-- Standard favicon for all browsers (ICO format) -->
-    {% comment %} <link rel="icon" type="image/x-icon" href="{{branding.favicon_ico.url}}" /> {% endcomment %}
+    <link rel="icon" type="image/x-icon" href="{{branding.favicon_ico.url}}" />
 
     <!-- SVG favicon for modern browsers -->
     {% comment %}
@@ -161,19 +161,19 @@
     {% endcomment %}
 
     <!-- PNG favicon (for browsers that prefer PNG) -->
-    {% comment %} <link
+    <link
       rel="icon"
       type="image/png"
       sizes="96x96"
       href="{{branding.favicon_96x96.url}}"
-    /> {% endcomment %}
+    />
 
     <!-- Apple Touch Icon (for iOS home screen) -->
-    {% comment %} <link
+    <link
       rel="apple-touch-icon"
       sizes="180x180"
       href="{{branding.apple_touch_icon.url}}"
-    /> {% endcomment %}
+    />
 
     <!-- Web App Manifest for Android and Progressive Web Apps -->
     {% comment %}
@@ -183,6 +183,7 @@
   <style></style>
 
   <body>
+      <img src="{{branding.og_image.url}}" alt="Saran Developer Portfolio">
     {% with request.path as path %}
     {% block navbar %}
     <header class="site-header">
