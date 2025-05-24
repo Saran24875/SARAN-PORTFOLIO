@@ -148,12 +148,12 @@
     {% comment %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     {% endcomment %}
-    <meta name="description" content="{{ branding.description }}" />
+    {% comment %} <meta name="description" content="{{ branding.description }}" /> {% endcomment %}
 
     {% block extra_head %}{% endblock %}
 
     <!-- Standard favicon for all browsers (ICO format) -->
-    <link rel="icon" type="image/x-icon" href="{{branding.favicon_ico.url}}" />
+    {% comment %} <link rel="icon" type="image/x-icon" href="{{branding.favicon_ico.url}}" /> {% endcomment %}
 
     <!-- SVG favicon for modern browsers -->
     {% comment %}
@@ -161,19 +161,19 @@
     {% endcomment %}
 
     <!-- PNG favicon (for browsers that prefer PNG) -->
-    <link
+    {% comment %} <link
       rel="icon"
       type="image/png"
       sizes="96x96"
       href="{{branding.favicon_96x96.url}}"
-    />
+    /> {% endcomment %}
 
     <!-- Apple Touch Icon (for iOS home screen) -->
-    <link
+    {% comment %} <link
       rel="apple-touch-icon"
       sizes="180x180"
       href="{{branding.apple_touch_icon.url}}"
-    />
+    /> {% endcomment %}
 
     <!-- Web App Manifest for Android and Progressive Web Apps -->
     {% comment %}
