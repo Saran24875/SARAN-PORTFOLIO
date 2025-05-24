@@ -8,7 +8,7 @@ class PersonalBrandingAdmin(admin.ModelAdmin):
             "fields": ["name", "tagline","about", "bio", "profile_picture", "profile_picture_for_mobile","remove_bg", "Dark_mode_profile_picture", "resume"],"description":"Update your name, tagline, bio, profile picture, resume and dark mode profile picture."
         }),
         ("Favicon Section", {
-            "fields": ["favicon_ico", "favicon_svg", "favicon_96x96", "apple_touch_icon", "site_webmanifest"]
+            "fields": ["og_image", "this_site_url","favicon_ico", "favicon_svg", "favicon_96x96", "apple_touch_icon", "site_webmanifest"]
             ,"description": "Upload favicon images in different formats for better compatibility.If you want to generate the fav icon for your website, please visit - 'https://realfavicongenerator.net'."
         }),
         ("Lite Mode Theme", {
