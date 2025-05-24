@@ -1883,7 +1883,7 @@ textarea::placeholder {
 /* Ensure grid items don’t stretch */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 20px;
   max-width: 1000px;
   margin: auto;
@@ -1928,7 +1928,7 @@ textarea::placeholder {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 20px;
   max-width: 1000px;
   margin: auto;
