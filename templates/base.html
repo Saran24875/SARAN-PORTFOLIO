@@ -6,7 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% comment %} <meta name="viewport" content="width=1024"> {% endcomment %}
     {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> {% endcomment %}
-    
+
+        
+    <meta name="description" content="Hi, I'm {{ branding.name }} – a passionate developer building awesome web experiences.">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ branding.name }} Portfolio">
+    <meta property="og:description" content="Hi, I'm {{ branding.name }} – a passionate developer building awesome web experiences.">
+
+    {% if og_image %}
+      <meta property="og:image" content="{{ og_image.url }}">
+    {% else %}
+      <meta property="og:image" content="{{ branding.favicon_96x96.url }}">
+    {% endif %}
+
+    {% if this_site_url %}
+      <meta property="og:url" content="{{ this_site_url }}">
+    {% else %}
+      <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    {% endif %}
+
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ branding.name }} Portfolio">
+    <meta name="twitter:description" content="Hi, I'm {{ branding.name }} – a passionate developer building awesome web experiences.">
+
+    {% if og_image %}
+      <meta name="twitter:image" content="{{ og_image.url }}">
+    {% else %}
+      <meta name="twitter:image" content="{{ branding.favicon_96x96.url }}">
+    {% endif %}
+
     <style>
 
         {% if branding %}

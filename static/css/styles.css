@@ -1447,6 +1447,29 @@ textarea::placeholder {
 }
 
 
+.view-more{
+  font-family: "poppins", sans-serif;
+  z-index: 100;
+  justify-content: center;
+  left: 50%;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 100px;
+  background-color: var(--hover-color);;
+  border: none;
+  font-weight: 600;
+  transition: background-color 0.5s ease, color 0.5s ease;
+
+}
+
+.view-more:hover {
+  background: var(--button-color);
+  color: var(--button-text-color);
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
 
 
 
@@ -3207,9 +3230,11 @@ textarea::placeholder {
   margin-right: 10px;
 
 }
-
-.back-button{
-  display: none;
+.home-edu .project .back-button{
+  display: none !important;
+}
+.project .back-button{
+  display: none !important;
 }
 
 .timeline {

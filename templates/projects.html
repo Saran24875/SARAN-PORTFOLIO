@@ -42,6 +42,9 @@
     </div>
     {% endfor %}
   </div>
+<button class="view-more" id="view-more" onclick="window.location.href='{% url 'projects:projects' %}'" aos="fade-left">
+    View More <i class="fa fa-angle-double-right"></i>
+  </button>
   {% else %} {% comment %}
   <p class="exception">No education information available</p>
   {% endcomment %}

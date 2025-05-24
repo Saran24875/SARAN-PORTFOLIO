@@ -25,6 +25,8 @@ class PersonalBranding(models.Model):
     profile_picture_for_mobile = models.ImageField(upload_to='branding/profile_picture_for_mobile/',storage=MediaCloudinaryStorage(),null=True,blank=False,help_text="Upload your profile picture For the lite Mode and If you want to remove the background from your profile picture, please check the 'Remove Background' checkbox.")
     Dark_mode_profile_picture = models.ImageField(upload_to='branding/background_images/',storage=MediaCloudinaryStorage(),help_text="Upload your dark mode profile picture For the dark mode. This will be displayed in dark mode.")
     resume = models.FileField(upload_to='branding/resumes/',storage=RawMediaCloudinaryStorage(), blank=False, null=True, help_text="Upload your resume in the format of .pdf or .docx" )
+    og_image = models.ImageField(upload_to='branding/og_image/',storage=MediaCloudinaryStorage(),help_text= "Upload your Open Graph image. This will be used when sharing your website on social media.",null=True,blank=True)
+    this_site_url = models.URLField(max_length=200,help_text="Enter the URL of your website. This will be used for Open Graph and Twitter Card meta tags.",null=True,blank=True)
     # def save(self, *args, **kwargs):
     #     # Only upload if resume is a new local file (not a URL already)
     #     if self.resume and not str(self.resume).startswith("http"):
