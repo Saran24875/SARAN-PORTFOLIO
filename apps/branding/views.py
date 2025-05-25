@@ -40,6 +40,8 @@ def index(request):
         'projects': Project.objects.all()[:4],  # Fetch all projects
         'project_messages': ProjectMessage.objects.all(),
         'contact': ContactInfo.objects.all(),  # Fetch all project messages
+        'footer' : {'github': contact.github if contact and contact.github_active else None,
+                    'linkedin': contact.linkedin},
         "social_media_links": social_media_links,
         'form': ContactForm(),  # Initialize the contact form
         'client_messages': Client_Message.objects.all(),  # Fetch all client messages

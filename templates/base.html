@@ -7,12 +7,12 @@
     {% comment %} <meta name="viewport" content="width=1024"> {% endcomment %}
     {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> {% endcomment %}
 
-        
-    <meta name="description" content="Hi, I'm {{ branding.name }} – a passionate developer building awesome web experiences.">
+    <meta name="title" content="Hi, I'm {{ branding.short_name }} | Designer & Developer">    
+    <meta name="description" content="{{ branding.about }}">
 
     <!-- Open Graph Meta Tags for Social Sharing -->
-    <meta property="og:title" content="{{ branding.name }} Portfolio">
-    <meta property="og:description" content="Hi, I'm {{ branding.name }} – a passionate developer building awesome web experiences.">
+    <meta property="og:title" content="Hi, I'm {{ branding.short_name }} | Designer & Developer">
+    <meta property="og:description" content="{{ branding.about }}">
     <meta property="og:type" content="website">
 
     {% if branding.og_image.url %}
@@ -39,8 +39,8 @@
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ branding.name }} Portfolio">
-    <meta name="twitter:description" content="Hi, I'm {{ branding.name }} – a passionate developer building awesome web experiences.">
+    <meta name="twitter:title" content=" Hi, I'm {{ branding.short_name }} | Designer & Developer">
+    <meta name="twitter:description" content="{{ branding.short_name }} ">
 
     {% if og_image %}
       <meta name="twitter:image" content="{{ branding.og_image.url }}">
@@ -148,7 +148,7 @@
     {% comment %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     {% endcomment %}
-    <meta name="description" content="{{ branding.description }}" />
+    {% comment %} <meta name="description" content="{{ branding.description }}" /> {% endcomment %}
 
     {% block extra_head %}{% endblock %}
 

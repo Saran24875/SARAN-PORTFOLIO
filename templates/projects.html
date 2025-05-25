@@ -6,13 +6,19 @@
   <button id="back_button" class="back-button" onclick="history.back()">
     <i class="fa fa-angle-double-left"></i> Back
   </button>
-
-  <h2 id="tittleproject" data-aos="fade-up" data-aos-duration="1000">
-    A Glimpse into My Work
-  </h2>
-  <p class="project-subtitle">
+  <div class="project-head">
+    <h2 id="tittleproject" data-aos="fade-up" class="project-heading">
+      A Glimpse into My Work
+    </h2>
+  </div>
+  <div class="project-sub">
+  <p class="project-subtitle" data-aos="fade-left">
+    {% comment %}Projects{% endcomment %}
     Explore my diverse range of projects that showcase my skills and creativity.
   </p>
+  </div>
+
+  {% comment %} <p class="project-subtitle" data-aos="fade-left">Explore my diverse range of projects that showcase my skills and creativity.</p> {% endcomment %}
 
   {% if projects %}
 

@@ -5,7 +5,7 @@
 <section class="services-section" id="servicespage">
     <h2 data-aos="fade-up">Our Premium Services</h2>
     {% if services %}
-    <p class="section-subtitle">Explore our wide range of services tailored for you.</p>
+    <p class="section-subtitle" data-aos="fade-up" >Explore our wide range of services tailored for you.</p>
 
     <div class="services-grid">
         {% for service in services %}
@@ -39,7 +39,7 @@
         {% endfor %}
 
     </div>
-    <a href="{% url 'contact' %}" class="contact-btn" data-aos="fade-up">Contact Us</a>
+    <a href="#contactpage" class="contact-btn" data-aos="fade-up">Contact Me</a>
     {% else %}
     {% comment %} <p class="exception">No education information available</p> {% endcomment %}
     <div class="no-info">

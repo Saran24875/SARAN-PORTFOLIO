@@ -1312,24 +1312,22 @@ textarea::placeholder {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* .project h1 {
-  text-align: center;
-  font-size: 3rem;
-  margin-bottom: 40px;
-  font-weight: bold;
-  color: var(--text-color);
-  text-transform: sentence-case;
-  letter-spacing: 2px;
-} */
+
 #tittleproject {
   margin-top: 20px;
   text-align: center;
   margin-bottom: 40px;
   font-weight: bold;
-  color: var(--h2-color);
   letter-spacing: 2px;
   font-size: 2rem;
-  transition: color 0.5s ease;
+  /* transition: color 0.5s ease; */
+}
+
+.project-head {
+    color: var(--h2-color);
+    transition: color 0.5s ease;
+
+
 }
 
 #tittleproject::after {
@@ -1346,10 +1344,16 @@ textarea::placeholder {
 .project-subtitle {
   text-align: center;
   font-size: 1.2rem;
-  color: var(--text-color);
   margin-bottom: 40px;
-  transition: color 0.5s ease;
   animation: fadeIn 1s ease-in forwards;
+}
+
+
+.project-sub{
+  color: var(--text-color);
+
+  transition: color 0.5s ease;
+
 }
 /* Project Grid */
 .project-grid {
@@ -1483,6 +1487,7 @@ textarea::placeholder {
 
 
   #view-more-button{
+    display: none;
     margin-top: 30px;
     background-color: var(--button-color);
     color: var(--button-text-color);
@@ -1492,11 +1497,30 @@ textarea::placeholder {
     
   }
   #view-more-button:hover{
+    display: none;
     margin-top: 30px;
     background-color: var(--hover-color);
     color: var(--text-color);
   }
+.home-edu .project #view-more-button{
+    display: inline-block;
+    font-size: 1rem;
+    margin-top: 30px;
+    background-color: var(--hover-color);
+    color: var(--text-color);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 
+  }
+  
+.home-edu .project #view-more-button:hover {
+    margin-top: 30px;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    /* border: 2px solid var(--hover-color); */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+
+    
+  } 
 
 
 /* ========================================
@@ -1876,7 +1900,7 @@ textarea::placeholder {
   color: var(--text-color);
   margin-bottom: 40px;
   transition: color 0.5s ease;
-  animation: fadeIn 1s ease-in forwards;
+  /* animation: fadeIn 1s ease-in forwards; */
 }
 
 /* Grid Layout */
@@ -2497,25 +2521,7 @@ textarea::placeholder {
   
 }
 
-.home-edu .project #view-more-button{
-    display: inline-block;
-    font-size: 0.7rem;
-    margin-top: 30px;
-    background-color: var(--hover-color);
-    color: var(--text-color);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 
-  }
-  
-.home-edu .project #view-more-button:hover {
-    margin-top: 30px;
-    background-color: var(--button-color);
-    color: var(--button-text-color);
-    /* border: 2px solid var(--hover-color); */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-
-    
-  } 
 
 
 
@@ -3026,7 +3032,25 @@ textarea::placeholder {
   display: none;
 }
 
+.home-edu .project #view-more-button{
+    display: inline-block;
+    font-size: 0.7rem;
+    margin-top: 30px;
+    background-color: var(--hover-color);
+    color: var(--text-color);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 
+  }
+  
+.home-edu .project #view-more-button:hover {
+    margin-top: 30px;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    /* border: 2px solid var(--hover-color); */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+
+    
+  } 
 
 
 
@@ -3100,7 +3124,7 @@ textarea::placeholder {
 
   .skill-card .level {
     color: var(--hover-color);
-    font-weight: 500;
+    font-weight: 1000;
 
   }
 

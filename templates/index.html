@@ -382,13 +382,19 @@
 {% endcomment %} 
 
 <footer class="footer" aos="fade-up">
-  <div class="footer-content">
-    <p>Copyright&copy; 2025 {{ branding.name }}. All rights reserved.</p>
-    <div class="social-links">
-      <a href="{{ link.github }}">GitHub</a>
-      <a href="{{ link.email }}">Email</a>
-    </div>
+<div class="footer-content">
+  <p>&copy; 2025 {{ branding.name }}. All rights reserved.</p>
+  <div class="social-links">
+    {% if footer.github %}
+      <a href="{{ footer.github }}" target="_blank">GitHub</a>
+    {% endif %}
+
+    {% if footer.linkedin %}
+      <a href="{{ footer.linkedin }}">LinkedIn</a>
+    {% endif %}
   </div>
+</div>
+
   <style>
     .footer {
     width: 100vw;

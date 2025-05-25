@@ -7,8 +7,8 @@ class PersonalBrandingAdmin(admin.ModelAdmin):
         ("Branding Section", {
             "fields": ["name", "tagline","about", "bio", "profile_picture", "profile_picture_for_mobile","remove_bg", "Dark_mode_profile_picture", "resume"],"description":"Update your name, tagline, bio, profile picture, resume and dark mode profile picture."
         }),
-        ("Favicon Section", {
-            "fields": ["og_image", "this_site_url","favicon_ico", "favicon_svg", "favicon_96x96", "apple_touch_icon", "site_webmanifest"]
+        ("Browser Tab Favicon and card name", {
+            "fields": ["short_name","og_image", "this_site_url","favicon_ico", "favicon_svg", "favicon_96x96", "apple_touch_icon", "site_webmanifest"]
             ,"description": "Upload favicon images in different formats for better compatibility.If you want to generate the fav icon for your website, please visit - 'https://realfavicongenerator.net'."
         }),
         ("Lite Mode Theme", {
