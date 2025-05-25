@@ -44,8 +44,20 @@ def validate_email_with_zerobounce(email):
                 failed_zerobounce_keys.add(api_key)
                 continue  # Try the next key
 
-            data = response.json()
+            try:
+                data = response.json()
+            except ValueError as e:
+                print(f"⚠️ JSON Decode Error with key {api_key}: {e}")
+                failed_zerobounce_keys.add(api_key)
+                continue
+
             print("ZeroBounce API Response:", data)
+
+            # Catch API-level errors even if status is 200
+            if "error" in data:
+                print(f"❌ ZeroBounce error response with key {api_key}: {data['error']}")
+                failed_zerobounce_keys.add(api_key)
+                continue
 
             if data.get("status") == "valid":
                 return True  # Valid email
@@ -54,18 +66,10 @@ def validate_email_with_zerobounce(email):
 
         except requests.exceptions.RequestException as e:
             print(f"🚨 Request failed with key {api_key}: {e}")
-            failed_zerobounce_keys.add(api_key)  # Mark key as failed
-            continue  # Try the next key
-
-        except ValueError as e:
-            print(f"⚠️ JSON Decode Error with key {api_key}: {e}")
             failed_zerobounce_keys.add(api_key)
             continue  # Try the next key
 
     return True  # If all API keys fail, assume the email is valid
-
-
-    
 # Track failed API keys
 failed_keys = set()
 
