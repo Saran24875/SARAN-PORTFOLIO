@@ -3701,7 +3701,7 @@ textarea::placeholder {
     margin-bottom: 0px;
 
   animation: slideUponload 0.5s ease-out forwards, fadeIn 1s ease-in forwards, border 1s ease-in forwards;
-  margin: 100px auto;}                                    
+  margin: 0px auto;}                                    
 
 .about-section h2 {
   text-align: start;
@@ -3732,6 +3732,9 @@ textarea::placeholder {
   border: none;
   font-weight: 600;
 }
+
+
+
 }
 
 

@@ -9,6 +9,8 @@ class ProgrammingLanguage(models.Model):
         ('Java', 'Java'),
         ('C', 'C'),
         ('Cpp', 'C++'),
+        ('HTML', 'HTML'),
+        ('CSS', 'CSS'),
         ('Javascript', 'JavaScript'),
         ('Typescript', 'TypeScript'),
         ('Csharp', 'C#'),
@@ -113,70 +115,72 @@ class ProgrammingLanguage(models.Model):
     @property
     def icon(self):
         mapping = {
-            'Python': 'fab fa-python',
-            'Java': 'fab fa-java',
-            'C': 'fas fa-code',
-            'Cpp': 'fas fa-code',
-            'Javascript': 'fab fa-js',
-            'Typescript': 'fab fa-js',
-            'Csharp': 'fab fa-microsoft',
-            'Swift': 'fab fa-swift',
-            'Kotlin': 'fas fa-code',
-            'Go': 'fas fa-code',
-            'Rust': 'fas fa-code',
-            'Dart': 'fas fa-code',
-            'Ruby': 'fa-solid fa-gem',
-            'Php': 'fab fa-php',
-            'R': 'fas fa-code',
-            'Julia': 'fas fa-code',
-            'Sql': 'fas fa-database',
-            'Plsql': 'fas fa-database',
-            'Tsql': 'fas fa-database',
-            'Graphql': 'fas fa-project-diagram',
-            'Perl': 'fas fa-code',
-            'Lua': 'fas fa-code',
-            'Haskell': 'fas fa-code',
-            'Clojure': 'fas fa-code',
-            'Scala': 'fab fa-scala',
-            'Erlang': 'fas fa-code',
-            'Elixir': 'fas fa-code',
-            'Fsharp': 'fas fa-code',
-            'Ocaml': 'fas fa-code',
-            'Prolog': 'fas fa-code',
-            'Lisp': 'fas fa-code',
-            'Scheme': 'fas fa-code',
-            'Fortran': 'fas fa-code',
-            'Cobol': 'fas fa-code',
-            'Basic': 'fas fa-code',
-            'Smalltalk': 'fas fa-code',
-            'Ada': 'fas fa-code',
-            'Algol': 'fas fa-code',
-            'Pascal': 'fas fa-code',
-            'Modula2': 'fas fa-code',
-            'Vhdl': 'fas fa-microchip',
-            'Verilog': 'fas fa-microchip',
-            'Jcl': 'fas fa-code',
-            'Xquery': 'fas fa-code',
-            'Postscript': 'fas fa-code',
-            'Bash': 'fas fa-terminal',
-            'Powershell': 'fas fa-terminal',
-            'Nim': 'fas fa-code',
-            'Zig': 'fas fa-code',
-            'Gams': 'fas fa-code',
-            'Idl': 'fas fa-code',
-            'Latex': 'fas fa-file-alt',
-            'Brainfuck': 'fas fa-brain',
-            'Whitespace': 'fas fa-code',
-            'Intercal': 'fas fa-code',
-            'Malbolge': 'fas fa-code',
-            'Piet': 'fas fa-paint-brush',
-            'Befunge': 'fas fa-code',
-            'Qsharp': 'fas fa-atom',
-            'Qiskit': 'fas fa-atom',
-            'Quipper': 'fas fa-atom',
-            'Silq': 'fas fa-atom',
-            'Cirq': 'fas fa-atom',
-            'Other': 'fas fa-code'
+            'Python': 'fab fa-python',  # Font Awesome
+            'Java': 'fab fa-java',      # Font Awesome
+            'C': 'devicon-c-plain  ',  # Devicon
+            'Cpp': 'devicon-cplusplus-plain  ',  # Devicon
+            'HTML': 'fab fa-html5',     # Font Awesome
+            'CSS': 'fab fa-css3-alt',   # Font Awesome
+            'Javascript': 'fab fa-js',  # Font Awesome
+            'Typescript': 'devicon-typescript-plain  ',  # Devicon
+            'Csharp': 'devicon-csharp-plain  ',  # Devicon
+            'Swift': 'devicon-swift-plain  ',  # Devicon
+            'Kotlin': 'devicon-kotlin-plain  ',  # Devicon
+            'Go': 'devicon-go-plain  ',  # Devicon
+            'Rust': 'devicon-rust-plain  ',  # Devicon
+            'Dart': 'devicon-dart-plain  ',  # Devicon
+            'Ruby': 'devicon-ruby-plain  ',  # Devicon
+            'Php': 'fab fa-php',  # Font Awesome
+            'R': 'devicon-r-plain  ',  # Devicon
+            'Julia': 'devicon-julia-plain  ',  # Devicon
+            'Sql': 'fas fa-database',  # Font Awesome
+            'Plsql': 'fas fa-database',  # Fallback
+            'Tsql': 'fas fa-database',  # Fallback
+            'Graphql': 'devicon-graphql-plain  ',  # Devicon
+            'Perl': 'devicon-perl-plain  ',  # Devicon
+            'Lua': 'devicon-lua-plain  ',  # Devicon
+            'Haskell': 'devicon-haskell-plain  ',  # Devicon
+            'Clojure': 'devicon-clojure-plain  ',  # Devicon
+            'Scala': 'devicon-scala-plain  ',  # Devicon
+            'Erlang': 'devicon-erlang-plain  ',  # Devicon
+            'Elixir': 'devicon-elixir-plain  ',  # Devicon
+            'Fsharp': 'fas fa-code',  # Fallback
+            'Ocaml': 'fas fa-code',  # Fallback
+            'Prolog': 'fas fa-code',  # Fallback
+            'Lisp': 'fas fa-code',  # Fallback
+            'Scheme': 'fas fa-code',  # Fallback
+            'Fortran': 'devicon-fortran-plain  ',  # Devicon
+            'Cobol': 'fas fa-code',  # Fallback
+            'Basic': 'fas fa-code',  # Fallback
+            'Smalltalk': 'fas fa-code',  # Fallback
+            'Ada': 'fas fa-code',  # Fallback
+            'Algol': 'fas fa-code',  # Fallback
+            'Pascal': 'fas fa-code',  # Fallback
+            'Modula2': 'fas fa-code',  # Fallback
+            'Vhdl': 'fas fa-microchip',  # Fallback
+            'Verilog': 'fas fa-microchip',  # Fallback
+            'Jcl': 'fas fa-code',  # Fallback
+            'Xquery': 'fas fa-code',  # Fallback
+            'Postscript': 'fas fa-code',  # Fallback
+            'Bash': 'devicon-bash-plain  ',  # Devicon
+            'Powershell': 'fas fa-terminal',  # Font Awesome
+            'Nim': 'fas fa-code',  # Fallback
+            'Zig': 'fas fa-code',  # Fallback
+            'Gams': 'fas fa-code',  # Fallback
+            'Idl': 'fas fa-code',  # Fallback
+            'Latex': 'devicon-latex-original',  # Devicon
+            'Brainfuck': 'fas fa-brain',  # Font Awesome
+            'Whitespace': 'fas fa-code',  # Fallback
+            'Intercal': 'fas fa-code',  # Fallback
+            'Malbolge': 'fas fa-code',  # Fallback
+            'Piet': 'fas fa-paint-brush',  # Font Awesome
+            'Befunge': 'fas fa-code',  # Fallback
+            'Qsharp': 'fas fa-atom',  # Font Awesome
+            'Qiskit': 'fas fa-atom',  # Font Awesome
+            'Quipper': 'fas fa-atom',  # Font Awesome
+            'Silq': 'fas fa-atom',  # Font Awesome
+            'Cirq': 'fas fa-atom',  # Font Awesome
+            'Other': 'fas fa-code'  # Default
         }
         return mapping.get(self.name, 'fas fa-code')
 
@@ -235,7 +239,6 @@ class Framework(models.Model):
         ('Remix', 'Remix'),
         ('Micro', 'Micro'),
         ('Aurelia', 'Aurelia'),
-        ('Other', 'Other'),
     ]
 
     select_framework = models.CharField(max_length=100, choices=FRAMEWORK_CHOICES, null=True, blank=True,
@@ -266,61 +269,63 @@ class Framework(models.Model):
     @property
     def icon(self):
         mapping = {
-            'Django': 'fab fa-python',
-            'Flask': 'fab fa-python',
-            'Fastapi': 'fas fa-bolt',
-            'Express': 'fab fa-node-js',
-            'Nestjs': 'fas fa-server',
-            'Spring': 'fab fa-java',
-            'Rails': 'fas fa-gem',
-            'Laravel': 'fab fa-laravel',
-            'Symfony': 'fab fa-symfony',
-            'Codeigniter': 'fas fa-fire',
-            'Aspnet': 'fab fa-microsoft',
-            'Dotnetcore': 'fab fa-microsoft',
-            'Phoenix': 'fas fa-fire',
-            'Nextjs': 'fas fa-code',
-            'Nuxtjs': 'fab fa-vuejs',
-            'Sveltekit': 'fas fa-code',
-            'Quasar': 'fas fa-code',
-            'Vue': 'fab fa-vuejs',
-            'Angular': 'fab fa-angular',
-            'React': 'fab fa-react',
-            'Blazor': 'fas fa-code',
-            'Flutter': 'fas fa-mobile-alt',
-            'Electron': 'fas fa-desktop',
-            'Qt': 'fas fa-desktop',
-            'Kivy': 'fas fa-mobile-alt',
-            'Tkinter': 'fas fa-window-maximize',
-            'Gtk': 'fas fa-desktop',
-            'Wxpython': 'fas fa-code',
-            'Pyramid': 'fas fa-mountain',
-            'Bottle': 'fas fa-flask',
-            'Tornado': 'fas fa-wind',
-            'Cherrypy': 'fas fa-tree',
-            'Falcon': 'fas fa-feather-alt',
-            'Hanami': 'fas fa-seedling',
-            'Play': 'fas fa-play',
-            'Struts': 'fas fa-code',
-            'Zend': 'fas fa-code',
-            'Fuelphp': 'fas fa-gas-pump',
-            'Cakephp': 'fas fa-birthday-cake',
-            'Adonisjs': 'fas fa-leaf',
-            'Feathersjs': 'fas fa-feather',
-            'Meteor': 'fas fa-meteor',
-            'Hapi': 'fas fa-smile',
-            'Backbone': 'fas fa-bone',
-            'Ember': 'fas fa-fire',
-            'Mithril': 'fas fa-shield-alt',
-            'Marionette': 'fas fa-theater-masks',
-            'Redwood': 'fas fa-tree',
-            'Gatsy': 'fas fa-rocket',
-            'Remix': 'fas fa-music',
-            'Micro': 'fas fa-microchip',
-            'Aurelia': 'fas fa-code',
-            'Other': 'fas fa-code',
+            'Django': 'devicon-django-plain  ',           # Devicon
+            'Flask': 'devicon-flask-original  ',          # Devicon
+            'Fastapi': 'fas fa-bolt',                           # FA (no Devicon yet)
+            'Express': 'devicon-express-original  ',      # Devicon
+            'Nestjs': 'devicon-nestjs-plain  ',           # Devicon
+            'Spring': 'devicon-spring-plain  ',           # Devicon
+            'Rails': 'devicon-rails-plain  ',             # Devicon
+            'Laravel': 'devicon-laravel-plain  ',         # Devicon
+            'Symfony': 'devicon-symfony-original  ',      # Devicon
+            'Codeigniter': 'fas fa-fire',                       # FA fallback
+            'Aspnet': 'devicon-dot-net-plain  ',          # Devicon (for .NET tech)
+            'Dotnetcore': 'devicon-dot-net-plain  ',      # Devicon
+            'Phoenix': 'fas fa-fire',                           # FA fallback
+            'Nextjs': 'devicon-nextjs-original',                # Devicon (monochrome only)
+            'Nuxtjs': 'devicon-nuxtjs-plain  ',           # Devicon
+            'Sveltekit': 'devicon-svelte-plain  ',        # Devicon
+            'Quasar': 'fas fa-code',                            # FA fallback
+            'Vue': 'devicon-vuejs-plain  ',               # Devicon
+            'Angular': 'devicon-angularjs-plain  ',       # Devicon
+            'React': 'devicon-react-original  ',          # Devicon
+            'Blazor': 'devicon-dot-net-plain  ',          # Devicon
+            'Flutter': 'devicon-flutter-plain  ',         # Devicon
+            'Electron': 'devicon-electron-original  ',    # Devicon
+            'Qt': 'devicon-qt-original  ',                # Devicon
+            'Kivy': 'fas fa-mobile-alt',                        # FA fallback
+            'Tkinter': 'fas fa-window-maximize',                # FA fallback
+            'Gtk': 'fas fa-desktop',                            # FA fallback
+            'Wxpython': 'fas fa-code',                          # FA fallback
+            'Pyramid': 'fas fa-mountain',                       # FA fallback
+            'Bottle': 'fas fa-flask',                           # FA fallback
+            'Tornado': 'fas fa-wind',                           # FA fallback
+            'Cherrypy': 'fas fa-tree',                          # FA fallback
+            'Falcon': 'fas fa-feather-alt',                     # FA fallback
+            'Hanami': 'fas fa-seedling',                        # FA fallback
+            'Play': 'fas fa-play',                              # FA fallback
+            'Struts': 'fas fa-code',                            # FA fallback
+            'Zend': 'fas fa-code',                              # FA fallback
+            'Fuelphp': 'fas fa-gas-pump',                       # FA fallback
+            'Cakephp': 'fas fa-birthday-cake',                  # FA fallback
+            'Adonisjs': 'fas fa-leaf',                          # FA fallback
+            'Feathersjs': 'fas fa-feather',                     # FA fallback
+            'Meteor': 'fas fa-meteor',                          # FA fallback
+            'Hapi': 'fas fa-smile',                             # FA fallback
+            'Backbone': 'devicon-backbonejs-plain  ',     # Devicon
+            'Ember': 'devicon-ember-original  ',          # Devicon
+            'Mithril': 'fas fa-shield-alt',                     # FA fallback
+            'Marionette': 'fas fa-theater-masks',               # FA fallback
+            'Redwood': 'fas fa-tree',                           # FA fallback
+            'Gatsy': 'fas fa-rocket',                           # Typo? Possibly Gatsby → use below
+            'Gatsby': 'devicon-gatsby-plain  ',           # Devicon
+            'Remix': 'fas fa-music',                            # FA fallback
+            'Micro': 'fas fa-microchip',                        # FA fallback
+            'Aurelia': 'fas fa-code',                           # FA fallback
+            'Other': 'fas fa-code'                              # Default
         }
         return mapping.get(self.select_framework, 'fas fa-code')
+
 
 
 class Tools(models.Model):
@@ -376,7 +381,6 @@ class Tools(models.Model):
         ('Honeycomb', 'Honeycomb'),
         ('Jaeger', 'Jaeger'),
         ('Opentelemetry', 'OpenTelemetry'),
-        ('Other', 'Other'),
     ]
 
     select_tools = models.CharField(
@@ -419,38 +423,38 @@ class Tools(models.Model):
     @property
     def icon(self):
         mapping = {
-            'Git': 'fab fa-git-alt',
-            'Github': 'fab fa-github',
-            'Gitlab': 'fab fa-gitlab',
+            'Git': 'devicon-git-plain  ',
+            'Github': 'devicon-github-original',
+            'Gitlab': 'devicon-gitlab-plain',
             'Bitbucket': 'fab fa-bitbucket',
-            'Docker': 'fab fa-docker',
-            'Kubernetes': 'fas fa-network-wired',
-            'Jenkins': 'fab fa-jenkins',
-            'Ansible': 'fas fa-cogs',
-            'Puppet': 'fas fa-code-branch',
-            'Chef': 'fas fa-utensils',
-            'Terraform': 'fas fa-cubes',
-            'Vagrant': 'fas fa-box',
-            'Npm': 'fab fa-npm',
-            'Yarn': 'fab fa-yarn',
-            'Pnpm': 'fas fa-cube',
-            'Webpack': 'fas fa-cogs',
-            'Babel': 'fas fa-language',
-            'Esbuild': 'fas fa-hammer',
-            'Rollup': 'fas fa-sync-alt',
-            'Parcel': 'fas fa-box-open',
-            'Gulp': 'fas fa-coffee',
-            'Grunt': 'fas fa-bug',
-            'Eslint': 'fas fa-exclamation-circle',
-            'Prettier': 'fas fa-paint-brush',
-            'Sonarqube': 'fas fa-water',
-            'Postman': 'fas fa-envelope',
+            'Docker': 'devicon-docker-plain  ',
+            'Kubernetes': 'devicon-kubernetes-plain  ',
+            'Jenkins': 'devicon-jenkins-line  ',
+            'Ansible': 'devicon-ansible-plain  ',
+            'Puppet': 'devicon-puppet-plain  ',
+            'Chef': 'fas fa-utensils',  # no devicon
+            'Terraform': 'devicon-terraform-plain  ',
+            'Vagrant': 'devicon-vagrant-plain  ',
+            'Npm': 'devicon-npm-original-wordmark',
+            'Yarn': 'devicon-yarn-plain',
+            'Pnpm': 'fas fa-cube',  # no devicon
+            'Webpack': 'devicon-webpack-plain  ',
+            'Babel': 'devicon-babel-plain  ',
+            'Esbuild': 'fas fa-hammer',  # no devicon
+            'Rollup': 'fas fa-sync-alt',  # no devicon
+            'Parcel': 'fas fa-box-open',  # no devicon
+            'Gulp': 'devicon-gulp-plain  ',
+            'Grunt': 'devicon-grunt-plain  ',
+            'Eslint': 'devicon-eslint-original  ',
+            'Prettier': 'devicon-prettier-plain  ',
+            'Sonarqube': 'fas fa-water',  # no devicon
+            'Postman': 'devicon-postman-plain  ',
             'Swagger': 'fas fa-file-alt',
-            'Selenium': 'fas fa-robot',
-            'Cypress': 'fas fa-spider',
-            'Jest': 'fas fa-vial',
-            'Mocha': 'fas fa-mug-hot',
-            'Chai': 'fas fa-coffee',
+            'Selenium': 'devicon-selenium-original  ',
+            'Cypress': 'devicon-cypress-plain  ',
+            'Jest': 'devicon-jest-plain  ',
+            'Mocha': 'devicon-mocha-plain  ',
+            'Chai': 'fas fa-coffee',  # no devicon
             'Junit': 'fas fa-balance-scale',
             'Pytest': 'fas fa-vial',
             'Cucumber': 'fas fa-seedling',
@@ -458,7 +462,7 @@ class Tools(models.Model):
             'Newrelic': 'fas fa-chart-line',
             'Datadog': 'fas fa-dog',
             'Prometheus': 'fas fa-fire',
-            'Grafana': 'fas fa-chart-pie',
+            'Grafana': 'devicon-grafana-original',
             'Splunk': 'fas fa-search',
             'Elk': 'fas fa-layer-group',
             'Logstash': 'fas fa-file-contract',
@@ -469,10 +473,11 @@ class Tools(models.Model):
             'Graylog': 'fas fa-file-signature',
             'Honeycomb': 'fas fa-database',
             'Jaeger': 'fas fa-search-location',
-            'Opentelemetry': 'fas fa-chart-network',
-            'Other': 'fas fa-tools',
+            'Opentelemetry': 'fas fa-project-diagram',
+            'Other': 'fas fa-tools'
         }
         return mapping.get(self.select_tools, 'fas fa-tools')
+
 
 
 class Database(models.Model):
@@ -532,33 +537,34 @@ class Database(models.Model):
     @property
     def icon(self):
         mapping = {
-            'Mysql': 'fas fa-database',
-            'Postgresql': 'fas fa-database',
-            'Sqlite': 'fas fa-table',
-            'Mongodb': 'fab fa-envira',
-            'Redis': 'fas fa-memory',
-            'Mariadb': 'fas fa-database',
-            'Oracle': 'fas fa-server',
-            'Sqlserver': 'fas fa-server',
-            'Firebase': 'fab fa-google',
-            'Dynamodb': 'fas fa-server',
-            'Cassandra': 'fas fa-cloud',
-            'Neo4j': 'fas fa-project-diagram',
-            'Couchdb': 'fas fa-couch',
-            'Arangodb': 'fas fa-project-diagram',
-            'Cockroachdb': 'fas fa-bug',
-            'Influxdb': 'fas fa-chart-line',
-            'Timescaledb': 'fas fa-clock',
-            'Tidb': 'fas fa-database',
-            'Clickhouse': 'fas fa-mouse-pointer',
-            'Voltdb': 'fas fa-bolt',
-            'Tarantool': 'fas fa-spider',
-            'Memcached': 'fas fa-memory',
-            'Faunadb': 'fas fa-paw',
-            'Supabase': 'fas fa-cloud',
-            'Other': 'fas fa-database',
+            'Mysql': 'devicon-mysql-plain  ',               # Devicon
+            'Postgresql': 'devicon-postgresql-plain  ',     # Devicon
+            'Sqlite': 'devicon-sqlite-plain  ',             # Devicon
+            'Mongodb': 'devicon-mongodb-plain  ',           # Devicon
+            'Redis': 'devicon-redis-plain  ',               # Devicon
+            'Mariadb': 'devicon-mariadb-plain  ',           # Devicon
+            'Oracle': 'devicon-oracle-original  ',          # Devicon
+            'Sqlserver': 'fas fa-server',                         # FA fallback
+            'Firebase': 'devicon-firebase-plain  ',         # Devicon
+            'Dynamodb': 'fas fa-server',                          # FA fallback
+            'Cassandra': 'devicon-apachecassandra-plain  ', # Devicon
+            'Neo4j': 'fas fa-project-diagram',                    # FA fallback
+            'Couchdb': 'fas fa-couch',                            # FA fallback
+            'Arangodb': 'fas fa-project-diagram',                 # FA fallback
+            'Cockroachdb': 'fas fa-bug',                          # FA fallback
+            'Influxdb': 'fas fa-chart-line',                      # FA fallback
+            'Timescaledb': 'fas fa-clock',                        # FA fallback
+            'Tidb': 'fas fa-database',                            # FA fallback
+            'Clickhouse': 'fas fa-mouse-pointer',                 # FA fallback
+            'Voltdb': 'fas fa-bolt',                              # FA fallback
+            'Tarantool': 'fas fa-spider',                         # FA fallback
+            'Memcached': 'fas fa-memory',                         # FA fallback
+            'Faunadb': 'fas fa-paw',                              # FA fallback
+            'Supabase': 'fas fa-cloud',                           # FA fallback
+            'Other': 'fas fa-database'                            # Default fallback
         }
         return mapping.get(self.select_database, 'fas fa-database')
+
 
 
 class SoftSkills(models.Model):
@@ -627,7 +633,7 @@ class SoftSkills(models.Model):
             'Decision making': 'fas fa-check-circle',
             'Work ethic': 'fas fa-tasks',
             'Stress management': 'fas fa-smile',
-            'Negotiation': 'fas fa-handshake-alt',
+            'Negotiation': 'fas fa-handshake',
             'Self motivation': 'fas fa-fire',
             'Attention to detail': 'fas fa-eye',
             'Interpersonal skills': 'fas fa-user-friends',
