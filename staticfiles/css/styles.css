@@ -1194,7 +1194,7 @@ textarea::placeholder {
 
 .skill-card .level {
   color: var(--hover-color);
-  font-weight: 500;
+  font-weight: 1000;
 
 }
 
@@ -1241,7 +1241,7 @@ textarea::placeholder {
   transform: rotate(-134deg);
   transform-origin: center;
   stroke: var(--primary-color);
-  transition: stroke-dashoffset 1s ease-in-out, stroke 1s ease-in-out;
+  transition: stroke-dashoffset 1.5s ease-in-out, stroke 1s ease-in-out;
 }
 
 .progress-text {
@@ -3701,7 +3701,7 @@ textarea::placeholder {
     margin-bottom: 0px;
 
   animation: slideUponload 0.5s ease-out forwards, fadeIn 1s ease-in forwards, border 1s ease-in forwards;
-  margin: 0px auto;}                                    
+  margin: 100px auto;}                                    
 
 .about-section h2 {
   text-align: start;

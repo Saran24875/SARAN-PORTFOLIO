@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block title %}Saran Portfolio{% endblock %}
+{% extends 'base.html' %} {% load static %} {% block title %}{{branding.sitetitle}}{% endblock %}
 {% block content %}
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1BGMJDJEH"></script>
@@ -381,7 +381,7 @@
 
 {% endcomment %} 
 
-<footer class="footer" aos="fade-up">
+<footer class="footer">
 <div class="footer-content">
   <p>&copy; 2025 {{ branding.name }}. All rights reserved.</p>
   <div class="social-links">

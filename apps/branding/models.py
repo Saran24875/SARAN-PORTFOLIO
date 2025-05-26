@@ -59,7 +59,12 @@ class PersonalBranding(models.Model):
     favicon_96x96= models.ImageField(upload_to='branding/favicon-96x96/',storage=MediaCloudinaryStorage(),blank=True,null=True,help_text="Upload your favicon in 96x96 .png format. This will be displayed in the browser tab.")
     apple_touch_icon= models.ImageField(upload_to='branding/apple_touch_icon/',storage=MediaCloudinaryStorage(), blank=True, null=True,help_text="Upload your Apple Touch icon in .png format. This will be used for Apple devices.")
     site_webmanifest= models.ImageField(upload_to='branding/site_webmanifest/',storage=MediaCloudinaryStorage(),blank=True,null=True,help_text="Upload your site webmanifest in .webmanifest format. This defines app metadata for browsers.")
-    short_name = models.CharField(max_length=100,help_text="Enter your short name for the share cards on the social media.",null=True,blank=True)
+    
+    
+    
+    sitetitle= models.CharField(max_length=100,help_text="Enter your site title. This will be displayed in the browser tab and as the main heading of your website.",null=True,blank=True)
+    sitetitle_on_card= models.CharField(max_length=100,help_text="Enter your site title on card. This will be displayed on the card when sharing your website on social media.",null=True,blank=True)
+    site_description = models.TextField(help_text="Enter your site description. This will be used for Open Graph and Twitter Card meta tags.",null=True,blank=True)
     
     Primary_color = ColorField(default='none',help_text="Enter or select your primary color. This will the background color of your website.")  
     text_color = ColorField(default='none',help_text="Enter or select your text color. This will be the color of the text in your website.") 

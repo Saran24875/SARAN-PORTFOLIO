@@ -7,12 +7,12 @@
     {% comment %} <meta name="viewport" content="width=1024"> {% endcomment %}
     {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> {% endcomment %}
 
-    <meta name="title" content="Hi, I'm {{ branding.short_name }} | Designer & Developer">    
-    <meta name="description" content="{{ branding.about }}">
+    <meta name="title" content="{{ branding.sitetitle }}">    
+    <meta name="description" content="{{ branding.site_description }}">
 
     <!-- Open Graph Meta Tags for Social Sharing -->
-    <meta property="og:title" content="Hi, I'm {{ branding.short_name }} | Designer & Developer">
-    <meta property="og:description" content="{{ branding.about }}">
+    <meta property="og:title" content="{{ branding.sitetitle_on_card }}">
+    <meta property="og:description" content="{{ branding.site_description }}">
     <meta property="og:type" content="website">
 
     {% if branding.og_image.url %}
@@ -39,8 +39,8 @@
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content=" Hi, I'm {{ branding.short_name }} | Designer & Developer">
-    <meta name="twitter:description" content="{{ branding.short_name }} ">
+    <meta name="twitter:title" content="{{ branding.sitetitle_on_card }}">
+    <meta name="twitter:description" content="{{ branding.site_description }}">
 
     {% if og_image %}
       <meta name="twitter:image" content="{{ branding.og_image.url }}">
